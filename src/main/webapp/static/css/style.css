@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+section {
+	height: 720px;
+}
+
+section>header {
+	padding: 20px 0px;
+}
