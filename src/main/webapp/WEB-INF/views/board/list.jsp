@@ -69,21 +69,23 @@
 						      });   
 						    </script>
 						  </div>
-					<div class="col-md-6" style="float: none; margin:0 auto;">
-					  <ul class="pager">
+					<div class="col-md-5" style="float: none; margin:0 auto;">
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination">
 					    <c:if test="${pageMaker.prev}">
-					    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					    	<li class="page-item"><a class="page-link" aria-label="Previous"  href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					    </c:if> 
 					
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class="page-item" <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+								<a class="page-link" href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 					
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					    	<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					    	<li class="page-item" ><a class="page-link" aria-label="Next" href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					    </c:if> 
 					  </ul>
+					</nav>
 					</div>
 				</form>
 			</section>
