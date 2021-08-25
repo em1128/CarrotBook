@@ -29,8 +29,8 @@
     </bean>
     
     <!-- scan -->
-    <context:component-scan base-package="com.team.carrot.controller.service"></context:component-scan>
-    <context:component-scan base-package="com.team.carrot.controller.dao"></context:component-scan>
-    <context:component-scan base-package="com.team.carrot.controller.vo"></context:component-scan>
+    <context:component-scan base-package="com.team.carrot.service"></context:component-scan>
+    <context:component-scan base-package="com.team.carrot.dao"></context:component-scan>
+    <context:component-scan base-package="com.team.carrot.vo"></context:component-scan>
 
 </beans>
