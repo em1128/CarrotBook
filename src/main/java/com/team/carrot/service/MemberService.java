@@ -8,4 +8,9 @@ public interface MemberService {
 	
 	public MemberVO login(MemberVO vo) throws Exception;
 	
+	public MemberVO find_id(MemberVO vo) throws Exception;
+	
+	public MemberVO find_pw(MemberVO vo) throws Exception;
+
+
 }

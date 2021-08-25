@@ -23,5 +23,16 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO login(MemberVO vo) throws Exception {
 		return dao.login(vo);
 	}
+
+	@Override
+	public MemberVO find_id(MemberVO vo) throws Exception {
+		return dao.find_id(vo);
+	}
+
+	@Override
+	public MemberVO find_pw(MemberVO vo) throws Exception {
+		return dao.find_pw(vo);
+	}
+	
 	
 }
