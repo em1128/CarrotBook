@@ -27,35 +27,41 @@
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
-        <title>당근책 로그인</title>
-
-		<jsp:include page="/static/include/header.jsp"/>
-		<link rel="stylesheet" href="${path}/css/style.css">
+        <title>아이디 찾기</title>
 			
+		<jsp:include page="/static/include/header.jsp"/>
+		
+		<link rel="stylesheet" href="${path}/css/style.css">
+		
     </head>
     
 	 <script type="text/javascript">
 	 $(document).ready(function(){
-			// 돌아가기 눌렀을 때
+			// 취소
 			$("#cancle").on("click", function(){
 				location.href = "#";
 			});
-			
+			$("#find_id").on("click", function(){
+				location.href = "${path}/carrot/find_id";
+			});
 			$("#submit").on("click", function(){
-				//아이디, 비밀번호 입력 안했을 때
 				if($("#memberId").val()==""){
 					alert("아이디를 입력해주세요.");
 					$("#memberId").focus();
 					return false;
 				}
-				if($("#memberPw").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#memberPw").focus();
+				if($("#memberName").val()==""){
+					alert("이름을 입력해주세요.");
+					$("#memberName").focus();
 					return false;
 				}
-				//아이디와 비밀번호 틀릴 때
+				if($("#phone").val()==""){
+					alert("휴대폰 번호를 입력해주세요.");
+					$("#phone").focus();
+					return false;
+				}
 				if($("#msg").val()==false){
-					alert("아이디와 비밀번호를 확인해주세요");
+					alert("작성한 정보를 확인해주세요");
 				}
 			});
 		});
@@ -63,30 +69,30 @@
 
     <body>
     	 <div class="container">
-			<form class="hjForm row g-3 mx-auto" action="/carrot/member/login" method="post">
-				<h3>당근책 로그인</h3>
+			<form class="hjForm row g-1 mx-auto" action="#" method="post">
+				<h3>비밀번호 변경</h3>
 				<c:if test="${member == null}">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<label for="memberId" class="form-label">아이디</label>
 						<input type="text" class="form-control" id="memberId" name="memberId">
 					</div>
-				  
-					<div class="col-md-6">
-						<label for="memberPw" class="form-label">비밀번호</label>
-						<input type="password" class="form-control" id="memberPw" name="memberPw">
+					<div class="col-md-12">
+						<label for="memberName" class="form-label">이름</label>
+						<input type="text" class="form-control" id="memberName" name="memberName">
+					</div>
+					<div class="col-md-12">
+						<label for="phone" class="form-label">휴대폰 번호</label>
+						<input type="text" class="form-control" id="phone" name="phone">
 					</div>
 					<div class="col-12">
-						<button type="submit" class="btn btn-secondary" id="submit">로그인</button>
+						<button type="button" class="btn btn-secondary" id="find_id">아이디 찾기</button>
+						<button type="submit" class="btn btn-secondary" id="submit">비밀번호 찾기</button>
 						<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
-					</div>
-					<div class="col-12">
-						<a href="${path}/member/find_id">아이디 찾기</a>
-						<a href="${path}/member/find_pw">비밀번호 찾기</a>
 					</div>
 				</c:if>
 				<c:if test="${member != null}">
 					${member.memberId}님 반갑습니다
-				</c:if>
+				</c:if>	
 			</form>
 		</div>
     </body>

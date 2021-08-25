@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-section {
-	height: 720px;
-}
-
-section>header {
-	padding: 20px 0px;
-}
-
 .hjForm {
 	max-width: 680px; 
 	margin-top: 80px; 

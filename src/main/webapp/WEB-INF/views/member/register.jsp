@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,31 +29,18 @@
 		
         <title>당근책 회원가입</title>
 
-		<%@include file="/static/include/header.jsp" %>
-    
-    	<style>
-			.hjForm {
-				max-width: 680px; 
-				margin-top: 80px; 
-				margin-bottom: 80px; 
-				padding: 32px; 
-				background: #fff; 
-				-webkit-border-radius: 10px; 
-				-moz-border-radius: 10px; 
-				border-radius: 10px; 
-				-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15); 
-				-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15); 
-				box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15) 
-				}
-    	</style>
+		<jsp:include page="/static/include/header.jsp"/>
+		
+		<link rel="stylesheet" href="${path}/css/style.css">
+		
     </head>
     
     <script type="text/javascript">
 		$(document).ready(function(){
 			// 취소
-			$(".cencle").on("click", function(){
-				location.href = "/login";
-			})
+			$("#cancle").on("click", function(){
+				location.href = "#";
+			});
 		
 			$("#submit").on("click", function(){
 				if($("#memberId").val()==""){
@@ -64,7 +53,7 @@
 					$("#memberPw").focus();
 					return false;
 				}
-				if($("#memberPw").val()=="#memberPw2"){
+				if($("#memberPw").val()!=$("#memberPw2").val()){
 					alert("비밀번호를 확인해주세요.");
 					$("#memberPw").focus();
 					return false;
@@ -80,71 +69,75 @@
 					return false;
 				}
 			});
-		})
+		});
 	</script>
     
     <body>
 	    <div class="container">
 			<form class="hjForm row g-3 mx-auto" action="/carrot/member/register" method="post">
 				<h3>당근책 회원가입</h3>
-				<div class="col-md-12">
-					<label for="memberId" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="memberId" name="memberId" placeholder="15자 이내의 영어, 숫자만 입력 가능합니다.">
-				</div>
-			  
-				<div class="col-md-6">
-					<label for="memberPw" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="비밀번호">
-				</div>
-				
-				<div class="col-md-6">
-					<label for="memberPw2" class="form-label">비밀번호 확인</label>
-					<input type="password" class="form-control" id="memberPw2" name="memberPw2" placeholder="비밀번호 확인">
-				</div>
-				
+				<c:if test="${member == null}">
+					<div class="col-md-12">
+						<label for="memberId" class="form-label">아이디</label>
+						<input type="text" class="form-control" id="memberId" name="memberId" placeholder="15자 이내의 영어, 숫자만 입력 가능합니다.">
+					</div>
 				  
-				<div class="col-12">
-					<label for="memberName" class="form-label">이름</label>
-					<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
-				</div>
-				  
-				<div class="col-12">
-					<label for="phone" class="form-label">휴대폰 번호</label>
-					<input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰 번호('-'없이 번호만 입력해주세요)">
-				</div>
+					<div class="col-md-6">
+						<label for="memberPw" class="form-label">비밀번호</label>
+						<input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="비밀번호">
+					</div>
+					
+					<div class="col-md-6">
+						<label for="memberPw2" class="form-label">비밀번호 확인</label>
+						<input type="password" class="form-control" id="memberPw2" name="memberPw2" placeholder="비밀번호 확인">
+					</div>
+					
+					  
+					<div class="col-md-12">
+						<label for="memberName" class="form-label">이름</label>
+						<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
+					</div>
+					  
+					<div class="col-md-12">
+						<label for="phone" class="form-label">휴대폰 번호</label>
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰 번호('-'없이 번호만 입력해주세요)">
+					</div>
+					
+					<div class="col-md-12">
+						<label for="birthday" class="form-label">생년월일</label>
+						<input type="text" class="form-control" id="birthday" name="birthday" placeholder="ex) 19920315">
+					</div>
+					
+					<div class="col-md-12">
+						<label for="gender">성별</label>
+							<label class="radio-inline">
+								<input type="radio" id="gender" name="gender" value="M"> 남성
+							</label>
+							<label class="radio-inline">
+								<input type="radio" id="gender" name="gender" value="F"> 여성
+							</label>
+					</div>
+					
+					<div class="col-md-12">
+						<label for="sms">SMS 수신 여부</label>
+							<label class="radio-inline">
+								<input type="radio" id="AgreeSms" name="sms" value="Y"> 동의합니다
+							</label>
+							<label class="radio-inline">
+								<input type="radio" id="AgreeSms" name="sms" value="N"> 동의하지 않습니다
+							</label>
+					</div>
 				
-				<div class="col-12">
-					<label for="birthday" class="form-label">생년월일</label>
-					<input type="text" class="form-control" id="birthday" name="birthday" placeholder="ex) 19920315">
-				</div>
-				
-				<div class="col-12">
-					<label for="gender">성별</label>
-						<label class="radio-inline">
-							<input type="radio" id="gender" name="gender" value="M"> 남성
-						</label>
-						<label class="radio-inline">
-							<input type="radio" id="gender" name="gender" value="F"> 여성
-						</label>
-				</div>
-				
-				<div class="col-12">
-					<label for=""sms"">SMS 수신 여부</label>
-						<label class="radio-inline">
-							<input type="radio" id="AgreeSms" name="sms" value="Y"> 동의합니다
-						</label>
-						<label class="radio-inline">
-							<input type="radio" id="AgreeSms" name=""sms"" value="N"> 동의하지 않습니다
-						</label>
-				</div>
-			
-				<div class="col-12" style="margin:auto; text-align:center;">
-					<button type="submit" class="btn btn-secondary" id="submit">회원 가입</button>
-					<button class="btn btn-secondary" type="button">돌아가기</button>
-				</div>
+					<div class="col-12">
+						<button type="submit" class="btn btn-secondary" id="submit">회원 가입</button>
+						<button class="btn btn-secondary" type="button" id="cancle">돌아가기</button>
+					</div>
+				</c:if>
+				<c:if test="${member != null}">
+					${member.memberId}님 반갑습니다
+				</c:if>					
 			</form>
 		</div>
     </body>
-    <%@include file="/static/include/footer.jsp" %>
-    
+	<jsp:include page="/static/include/footer.jsp"/>   
 </html>
