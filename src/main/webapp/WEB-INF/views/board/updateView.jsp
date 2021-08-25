@@ -55,7 +55,7 @@
 			 
 			 <%@include file="/static/include/header.jsp" %>
 
-			<section id="container" class="col-sm-8" >
+			<section id="container" class="mx-auto" style="width:1000px;">
 				<form name="updateForm" role="form" method="post" action="/board/update">
 					<input type="hidden" name="bno" value="${update.bno}" readonly="readonly"/>
 					

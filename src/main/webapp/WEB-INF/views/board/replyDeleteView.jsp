@@ -28,7 +28,7 @@
 	<body style="width:90%; height: 100px; margin: auto; text-align: center;">
 	 		<%@include file="/static/include/header.jsp" %>
 
-			<section id="container">
+			<section id="container" class="mx-auto" style="width:1000px;">
 				<form name="updateForm" role="form" method="post" action="/board/replyDelete">
 					<input type="hidden" name="bno" value="${replyDelete.bno}" readonly="readonly"/>
 					<input type="hidden" id="rno" name="rno" value="${replyDelete.rno}" />
