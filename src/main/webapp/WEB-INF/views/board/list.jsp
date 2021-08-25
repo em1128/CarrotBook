@@ -69,9 +69,9 @@
 						      });   
 						    </script>
 						  </div>
-					<div class="col-md-5" style="float: none; margin:0 auto;">
+					
 					<nav aria-label="Page navigation example">
-					  <ul class="pagination">
+					  <ul class="pagination justify-content-center">
 					    <c:if test="${pageMaker.prev}">
 					    	<li class="page-item"><a class="page-link" aria-label="Previous"  href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					    </c:if> 
@@ -86,7 +86,6 @@
 					    </c:if> 
 					  </ul>
 					</nav>
-					</div>
 				</form>
 			</section>
 			
