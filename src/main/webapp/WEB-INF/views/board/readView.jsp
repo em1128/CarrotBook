@@ -71,9 +71,9 @@
 		})
 	</script>
 	<body style="width:90%; height: 100px; margin: auto;">
-			<%@include file="header.jsp" %>
+			<%@include file="/static/include/header.jsp" %>
 			
-			<section id="container" class="col-sm-8" >
+			<section id="container" class="mx-auto" style="width:1000px;">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="bno" name="bno" value="${read.bno}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
@@ -151,7 +151,7 @@
 				</form>
 			</section>
 			
-			<%@include file="footer.jsp" %>
+			<%@include file="/static/include/footer.jsp" %>
 			
 	</body>
 </html>

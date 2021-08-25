@@ -19,7 +19,7 @@
 	
 	<body style="width:90%; height: 100px; margin: auto; text-align: center;">
 
-			<%@include file="header.jsp" %>
+			<%@include file="/static/include/header.jsp" %>
 <%-- 			 <div >
 				<%@include file="nav.jsp" %>
 			</div> --%>
@@ -48,9 +48,7 @@
 						</tbody>
 					</table>
 					
-					
-					<div class="col-md-4" style="float:none; margin:0 auto;">
-						    <select name="searchType">
+						    <select name="searchType" style= "margin:15px;">
 						      <%-- <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option> --%>
 						      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 						      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -59,8 +57,8 @@
 						    </select>
 						
 						    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
-						    <input id="searchBtn" type="submit" value="검색"  class="btn btn-default">						
-							<input type="button" value="글작성"  class="btn btn-default" onclick="location.href='/board/writeView'" >						
+						    <input id="searchBtn" type="submit" value="검색"  class="btn btn-outline-dark">						
+							<input type="button" value="글작성"  class="btn btn-outline-dark" onclick="location.href='/board/writeView'" >						
 						    <script>
 						      $(function(){
 						        $('#searchBtn').click(function() {
@@ -68,26 +66,26 @@
 						        });
 						      });   
 						    </script>
-						  </div>
-					<div class="col-md-6" style="float: none; margin:0 auto;">
-					  <ul class="pager">
+					
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination justify-content-center">
 					    <c:if test="${pageMaker.prev}">
-					    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					    	<li class="page-item"><a class="page-link" aria-label="Previous"  href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					    </c:if> 
 					
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class="page-item" <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+								<a class="page-link" href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 					
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					    	<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					    	<li class="page-item" ><a class="page-link" aria-label="Next" href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					    </c:if> 
 					  </ul>
-					</div>
+					</nav>
 				</form>
 			</section>
 			
-			<%@include file="footer.jsp" %>
+			<%@include file="/static/include/footer.jsp" %>
 	</body>
 </html>
