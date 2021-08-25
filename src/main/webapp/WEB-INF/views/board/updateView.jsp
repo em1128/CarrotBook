@@ -53,7 +53,7 @@
 			</header>
 			<hr /> -->
 			 
-			 <%@include file="header.jsp" %>
+			 <%@include file="/static/include/header.jsp" %>
 
 			<section id="container" class="col-sm-8" >
 				<form name="updateForm" role="form" method="post" action="/board/update">
@@ -82,6 +82,6 @@
 					</div>
 				</form>
 			</section>
-			<%@include file="footer.jsp" %>
+			<%@include file="/static/include/footer.jsp" %>
 	</body>
 </html>

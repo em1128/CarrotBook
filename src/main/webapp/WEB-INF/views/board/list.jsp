@@ -19,7 +19,7 @@
 	
 	<body style="width:90%; height: 100px; margin: auto; text-align: center;">
 
-			<%@include file="header.jsp" %>
+			<%@include file="/static/include/header.jsp" %>
 <%-- 			 <div >
 				<%@include file="nav.jsp" %>
 			</div> --%>
@@ -88,6 +88,6 @@
 				</form>
 			</section>
 			
-			<%@include file="footer.jsp" %>
+			<%@include file="/static/include/footer.jsp" %>
 	</body>
 </html>
