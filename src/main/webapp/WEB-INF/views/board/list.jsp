@@ -48,9 +48,7 @@
 						</tbody>
 					</table>
 					
-					
-					<div class="col-md-4" style="float:none; margin:0 auto;">
-						    <select name="searchType">
+						    <select name="searchType" style= "margin:15px;">
 						      <%-- <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option> --%>
 						      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 						      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -59,8 +57,8 @@
 						    </select>
 						
 						    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
-						    <input id="searchBtn" type="submit" value="검색"  class="btn btn-default">						
-							<input type="button" value="글작성"  class="btn btn-default" onclick="location.href='/board/writeView'" >						
+						    <input id="searchBtn" type="submit" value="검색"  class="btn btn-outline-dark">						
+							<input type="button" value="글작성"  class="btn btn-outline-dark" onclick="location.href='/board/writeView'" >						
 						    <script>
 						      $(function(){
 						        $('#searchBtn').click(function() {
@@ -68,10 +66,9 @@
 						        });
 						      });   
 						    </script>
-						  </div>
-					<div class="col-md-5" style="float: none; margin:0 auto;">
+					
 					<nav aria-label="Page navigation example">
-					  <ul class="pagination">
+					  <ul class="pagination justify-content-center">
 					    <c:if test="${pageMaker.prev}">
 					    	<li class="page-item"><a class="page-link" aria-label="Previous"  href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					    </c:if> 
@@ -86,7 +83,6 @@
 					    </c:if> 
 					  </ul>
 					</nav>
-					</div>
 				</form>
 			</section>
 			

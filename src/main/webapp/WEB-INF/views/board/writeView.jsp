@@ -39,7 +39,7 @@
 	<body style="width:90%; height: 100px; margin: auto; ">
 			<%@include file="/static/include/header.jsp" %>
 
-		<section id="container" class="col-sm-8">
+		<section id="container" class="mx-auto" style="width:1000px;">
 				<form name="writeform" role="form" method="post" action="/board/write">
 					
 						
