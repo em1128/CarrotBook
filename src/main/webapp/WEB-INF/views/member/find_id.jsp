@@ -29,7 +29,7 @@
 		
         <title>아이디 찾기</title>
 			
-		<jsp:include page="/static/include/header.jsp"/>
+		<jsp:include page="${path}/static/include/header.jsp"/>
 		
 		<link rel="stylesheet" href="${path}/css/style.css">
 		
@@ -39,7 +39,7 @@
 	 $(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "#";
+				location.href = "${path}/home";
 			});
 		
 			$("#submit").on("click", function(){
@@ -53,16 +53,13 @@
 					$("#phone").focus();
 					return false;
 				}
-				if($("#msg").val()==false){
-					alert("이름과 휴대폰 번호를 확인해주세요");
-				}
 			});
 		});
 	</script>
 
     <body>
     	 <div class="container">
-			<form class="hjForm row g-3 mx-auto" action="/carrot/member/find_id" method="post">
+			<form class="hjForm row g-3 mx-auto" action="${path}/member/find_id" method="post">
 				<h3>아이디 찾기</h3>
 				<c:if test="${member == null}">
 					<div class="col-md-6">
@@ -80,9 +77,13 @@
 				</c:if>
 				<c:if test="${member != null}">
 					${member.memberId}님 반갑습니다
-				</c:if>				
+				</c:if>
+				<!-- 휴대폰번호와 이름이 일치하지 않을 때! -->
+				<c:if test="${msg == false}">
+					alert("이름과 휴대폰 번호를 확인해주세요");
+				</c:if>						
 			</form>
 		</div>
     </body>
-    <jsp:include page="/static/include/footer.jsp"/>
+    <jsp:include page="${path}/static/include/footer.jsp"/>
 </html>

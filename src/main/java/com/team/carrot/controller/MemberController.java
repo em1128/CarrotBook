@@ -55,7 +55,7 @@ public class MemberController {
 		if(login == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
-			return "redirect:/member/login";
+			return "/member/login";
 		}else {
 			session.setAttribute("member", login);
 			return "redirect:/member/myPage";
@@ -71,13 +71,13 @@ public class MemberController {
 	
 	// 아이디 찾기 get
 	@RequestMapping(value = "/find_id", method = RequestMethod.GET)
-	public void getFind_id() throws Exception {
+	public void get_find_id() throws Exception {
 		logger.info("get find id");
 	}
 	
 	// 아이디 찾기 post
 	@RequestMapping(value = "/find_id", method = RequestMethod.POST)
-	public String postFind_id(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+	public String post_find_id(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
 		logger.info("post find id");
 		
 		HttpSession session = req.getSession();
@@ -94,8 +94,9 @@ public class MemberController {
 	}
 	// 아이디 확인 get
 	@RequestMapping(value = "/check_id", method = RequestMethod.GET)
-	public void check_id() throws Exception {
+	public void check_id(HttpSession session) throws Exception {
 		logger.info("check id");
+		
 	}
 	
 	//마이페이쥐잉
@@ -106,13 +107,13 @@ public class MemberController {
 	
 	//비밀번호 찾기 get
 	@RequestMapping(value = "/find_pw", method = RequestMethod.GET)
-	public void find_pw() throws Exception {
+	public void get_find_pw() throws Exception {
 		logger.info("find pw");
 	}
 	
 	//비밀번호 찾기 post
 	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
-	public String postFind_pw(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+	public String post_find_pw(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
 		logger.info("post find pw");
 		
 		HttpSession session = req.getSession();
@@ -124,14 +125,22 @@ public class MemberController {
 			return "/member/find_pw";
 		}else {
 			session.setAttribute("member", find_pw);
-			return "redirect:/member/change_pw";
+			return "redirect:/member/change_pw_form";
 		}
 	}
 	
 	//비밀번호 변경 get
-	@RequestMapping(value = "/change_pw", method = RequestMethod.GET)
-	public String get_change_pw() throws Exception {
-		return "member/change_pw";
+	@RequestMapping(value = "/change_pw_form", method = RequestMethod.GET)
+	public String get_change_pw_form() throws Exception {
+		logger.info("get change pw");
+		return "member/change_pw_form";		
 	}	
 
+	//비밀번호 변경 post
+	@RequestMapping(value="/change_pw", method = RequestMethod.POST)
+	public String post_change_pw(MemberVO vo, HttpSession session) throws Exception{
+		service.change_pw(vo);
+		session.invalidate();
+		return "redirect:/home";
+	}
 }

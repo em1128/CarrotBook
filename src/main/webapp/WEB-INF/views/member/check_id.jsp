@@ -26,7 +26,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
 		<title>아이디 찾기</title>
-		<jsp:include page="/static/include/header.jsp"/>
+		<jsp:include page="${path}/static/include/header.jsp"/>
 		
 		<link rel="stylesheet" href="${path}/css/style.css">
 		
@@ -36,7 +36,7 @@
 		$(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "#";
+				location.href = "${path}/home";
 			});
 			//로그인 페이지로
 			$("#login").on("click", function(){
@@ -56,5 +56,5 @@
 			</div>		
 		</div>
 	</body>
-    <jsp:include page="/static/include/footer.jsp"/>
+    <jsp:include page="${path}/static/include/footer.jsp"/>
 </html>
