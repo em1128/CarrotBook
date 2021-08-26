@@ -33,6 +33,11 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO find_pw(MemberVO vo) throws Exception {
 		return dao.find_pw(vo);
 	}
+
+	@Override
+	public void change_pw(MemberVO vo) throws Exception {
+		dao.change_pw(vo);
+	}
 	
 	
 }

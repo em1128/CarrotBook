@@ -21,8 +21,12 @@
     
     <!-- 비밀번호 찾기 -->
     <select id="find_pw" resultType="com.team.carrot.vo.MemberVO">
-    	SELECT memberId, memberPw from members where memberId = #{memberId} AND memberName = #{memberName} AND phone = #{phone}
+    	SELECT memberId from members where memberId = #{memberId} AND memberName = #{memberName} AND phone = #{phone}
     </select>
 
+	<!-- 비밀번호 변경 -->
+    <update id="change_pw">
+    	UPDATE members SET memberPw = #{memberPw} where memberId = #{memberId}
+    </update>
     
 </mapper>

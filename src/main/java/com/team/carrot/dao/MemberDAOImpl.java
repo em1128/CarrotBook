@@ -33,5 +33,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO find_pw(MemberVO vo) throws Exception {
 		return sql.selectOne("memberMapper.find_pw", vo);
 	}
+	
+	@Override
+	public void change_pw(MemberVO vo) throws Exception {
+		sql.update("memberMapper.change_pw", vo);
+	}
 
 }

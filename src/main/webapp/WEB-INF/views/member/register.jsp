@@ -29,7 +29,7 @@
 		
         <title>당근책 회원가입</title>
 
-		<jsp:include page="/static/include/header.jsp"/>
+		<jsp:include page="${path}/static/include/header.jsp"/>
 		
 		<link rel="stylesheet" href="${path}/css/style.css">
 		
@@ -39,7 +39,7 @@
 		$(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "#";
+				location.href = "${path}/home";
 			});
 		
 			$("#submit").on("click", function(){
@@ -74,7 +74,7 @@
     
     <body>
 	    <div class="container">
-			<form class="hjForm row g-3 mx-auto" action="/carrot/member/register" method="post">
+			<form class="hjForm row g-3 mx-auto" action="${path}/member/register" method="post">
 				<h3>당근책 회원가입</h3>
 				<c:if test="${member == null}">
 					<div class="col-md-12">
@@ -135,9 +135,9 @@
 				</c:if>
 				<c:if test="${member != null}">
 					${member.memberId}님 반갑습니다
-				</c:if>					
+				</c:if>
 			</form>
 		</div>
     </body>
-	<jsp:include page="/static/include/footer.jsp"/>   
+	<jsp:include page="${path}/static/include/footer.jsp"/>   
 </html>
