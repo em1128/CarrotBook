@@ -44,6 +44,15 @@
 		$("#login").on("click", function() {
 			location.href = "${path}/member/login";
 		});
+		$("#change_pw").on("click", function() {
+			location.href = "${path}/member/change_pw_form";
+		});
+		$("#update_member").on("click", function() {
+			location.href = "${path}/member/update_member";
+		});
+		$("#delete_member").on("click", function() {
+			location.href = "${path}/member/delete_member";
+		});
 	});
 	</script>
 	
@@ -55,8 +64,9 @@
 					<br>
 					<button type="button" class="btn btn-secondary" id="cancle">주문 목록</button>
 					<button type="button" class="btn btn-secondary" id="cancle">장바구니</button>
-					<button type="button" class="btn btn-secondary" id="cancle">회원 정보 수정</button>
-					<button type="button" class="btn btn-secondary" id="cancle">회원 탈퇴</button>
+					<button type="button" class="btn btn-secondary" id="update_member">회원 정보 수정</button>
+					<button type="button" class="btn btn-secondary" id="change_pw">비밀번호 변경</button>
+					<button type="button" class="btn btn-secondary" id="delete_member">회원 탈퇴</button>
 				</div>
 			</div>
 		</c:if>
