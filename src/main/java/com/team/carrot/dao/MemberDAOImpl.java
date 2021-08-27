@@ -41,11 +41,21 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne("memberMapper.find_pw", vo);
 	}
 	
+	//비밀번호 변경
 	@Override
 	public int change_pw(MemberVO vo) throws Exception {
 		return sql.update("memberMapper.change_pw", vo);
 	}
 	
+	//회원정보 수정
+	@Override
+	public int update_member(MemberVO vo) throws Exception {
+		return sql.update("memberMapper.update_member",vo);
+	}
 
+	@Override
+	public int delete_member(MemberVO vo) throws Exception {
+		return sql.delete("memberMapper.delete_member",vo);
+	}
 
 }

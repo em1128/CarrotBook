@@ -47,5 +47,4 @@ public class MemberLoginController {
 		}
 		model.addAttribute("member", vo);
 	}
-	
 }

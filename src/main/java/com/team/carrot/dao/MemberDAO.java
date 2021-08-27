@@ -19,6 +19,12 @@ public interface MemberDAO {
 	
 	//비밀번호 변경
 	public int change_pw(MemberVO vo) throws Exception;
+	
+	//회원정보 수정
+	public int update_member(MemberVO vo) throws Exception;
+	
+	//회원 탈퇴
+	public int delete_member(MemberVO vo) throws Exception;
 
 }	
 

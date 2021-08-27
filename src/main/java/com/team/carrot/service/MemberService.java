@@ -15,5 +15,7 @@ public interface MemberService {
 	
 	public int change_pw(MemberVO vo) throws Exception;
 
-
+	public int update_member(MemberVO vo) throws Exception;
+	
+	public int delete_member(MemberVO vo) throws Exception;
 }
