@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,46 +21,30 @@ import com.team.carrot.vo.MemberVO;
 public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private final MemberService service;
 	
 	@Inject
-	MemberService service;
+	public MemberController(MemberService service) {
+		this.service = service;
+	}
 	
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void getRegister() throws Exception {
-		logger.info("get register");
+	public String getRegister() throws Exception {
+		return "/member/register";
 	}
 	
 	// 회원가입 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postRegister(MemberVO vo) throws Exception {
+	public String postRegister(MemberVO vo, RedirectAttributes rttr) throws Exception {
 		logger.info("post register");
+		
+		String hashedPw = BCrypt.hashpw(vo.getMemberPw(), BCrypt.gensalt());
+		vo.setMemberPw(hashedPw);
 		service.register(vo);
-		return "/member/login";
-	}
-	
-	// 로그인 get
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public void getLogin() throws Exception {
-		logger.info("get login");
-	}
-	
-	// 로그인 post
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String postLogin(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-		logger.info("post login");
+		rttr.addFlashAttribute("msg", "ok");
 		
-		HttpSession session = req.getSession();
-		MemberVO login = service.login(vo);
-		
-		if(login == null) {
-			session.setAttribute("member", null);
-			rttr.addFlashAttribute("msg", false);
-			return "/member/login";
-		}else {
-			session.setAttribute("member", login);
-			return "redirect:/member/myPage";
-		}
+		return "redirect:/member/login";
 	}
 	
 	//로그아웃
@@ -85,8 +70,8 @@ public class MemberController {
 		
 		if(find_id == null) {
 			session.setAttribute("member", null);
-			rttr.addFlashAttribute("msg", false);
-			return "/member/find_id";
+			rttr.addFlashAttribute("msg", "fail");
+			return "redirect:/member/find_id";
 		}else {
 			session.setAttribute("member", find_id);
 			return "redirect:/member/check_id";
@@ -107,8 +92,8 @@ public class MemberController {
 	
 	//비밀번호 찾기 get
 	@RequestMapping(value = "/find_pw", method = RequestMethod.GET)
-	public void get_find_pw() throws Exception {
-		logger.info("find pw");
+	public String get_find_pw() throws Exception {
+		return "member/find_pw";
 	}
 	
 	//비밀번호 찾기 post
@@ -121,8 +106,8 @@ public class MemberController {
 		
 		if(find_pw == null) {
 			session.setAttribute("member", null);
-			rttr.addFlashAttribute("msg", false);
-			return "/member/find_pw";
+			rttr.addFlashAttribute("msg", "fail");
+			return "redirect:/member/find_pw";
 		}else {
 			session.setAttribute("member", find_pw);
 			return "redirect:/member/change_pw_form";
@@ -138,9 +123,19 @@ public class MemberController {
 
 	//비밀번호 변경 post
 	@RequestMapping(value="/change_pw", method = RequestMethod.POST)
-	public String post_change_pw(MemberVO vo, HttpSession session) throws Exception{
-		service.change_pw(vo);
+	public String post_change_pw(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+		String hashedPw = BCrypt.hashpw(vo.getMemberPw(), BCrypt.gensalt());
+		vo.setMemberPw(hashedPw);
+		int msg_pw = service.change_pw(vo);
 		session.invalidate();
-		return "redirect:/home";
+		
+		if(msg_pw!=1) {
+			rttr.addFlashAttribute("msg_pw","0");
+			return "redirect:/member/change_pw_form";
+		}else { //될때
+
+			rttr.addFlashAttribute("msg_pw","1");
+			return "redirect:/member/change_pw_form";
+		}
 	}
 }

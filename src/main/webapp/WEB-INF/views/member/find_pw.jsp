@@ -71,43 +71,45 @@
 </script>
 
 	<body>
-		<div class="container">
-			<form class="hjForm row g-1 mx-auto" action="${path}/member/find_pw" method="post">
-				<h3>비밀번호 찾기</h3>
-				<c:if test="${member == null}">
-					<div class="col-md-12">
-						<label for="memberId" class="form-label">아이디</label> 
-						<input type="text" class="form-control" id="memberId" name="memberId">
-					</div>
-					<div class="col-md-12">
-						<label for="memberName" class="form-label">이름</label>
-						<input type="text" class="form-control" id="memberName" name="memberName">
-					</div>
-					<div class="col-md-12">
-						<label for="phone" class="form-label">휴대폰 번호</label>
-						<input type="text" class="form-control" id="phone" name="phone">
-					</div>
-					<div class="col-12">
-						<br>
-						<button type="button" class="btn btn-secondary" id="find_id">아이디 찾기</button>
-						<button type="submit" class="btn btn-secondary" id="submit">비밀번호 찾기</button>
-						<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
-					</div>
-				</c:if>
+		<c:if test="${not empty login}">
+			<script>
+				self.location = "/member/myPage";	
+			</script>
+		</c:if>	
+		<c:if test="${empty login}">
+			<div class="container">
+				<form class="hjForm row g-1 mx-auto" action="${path}/member/find_pw" method="post">
+					<h3>비밀번호 찾기</h3>
+						<div class="col-md-12">
+							<label for="memberId" class="form-label">아이디</label> 
+							<input type="text" class="form-control" id="memberId" name="memberId">
+						</div>
+						<div class="col-md-12">
+							<label for="memberName" class="form-label">이름</label>
+							<input type="text" class="form-control" id="memberName" name="memberName">
+						</div>
+						<div class="col-md-12">
+							<label for="phone" class="form-label">휴대폰 번호</label>
+							<input type="text" class="form-control" id="phone" name="phone">
+						</div>
+						<div class="col-12">
+							<br>
+							<button type="button" class="btn btn-secondary" id="find_id">아이디 찾기</button>
+							<button type="submit" class="btn btn-secondary" id="submit">비밀번호 찾기</button>
+							<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
+						</div>
 	
-				<c:if test="${member != null}">
-						${member.memberId}님 반갑습니다
-				</c:if>
-	
-				<!-- 정보가 일치하지 않을 때! -->
-				<c:if test="${msg == false}">
+					<!-- 정보가 일치하지 않을 때! -->
 					<script>
-						alert("작성한 정보를 확인해주세요");
+						var msg="${msg}";
+						var msg_pw="${msg_pw}";
+						if(msg == "fail"){
+							alert("작성한 정보를 확인해주세요");
+						}					
 					</script>
-				</c:if>
-			
-			</form>
-		</div>
+				</form>
+			</div>
+		</c:if>
 	</body>
 <jsp:include page="${path}/static/include/footer.jsp" />
 </html>
