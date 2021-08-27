@@ -57,10 +57,10 @@
 	</script>
 	
     <body>
-		<c:if test="${member != null}">
+		<c:if test="${not empty login}">
 			<div class="container hjForm row g-3 mx-auto">
 				<div class="col-12">
-					<h3>${member.memberId} 회원님 안녕하세요</h3>
+					<h3>${login.memberId} 회원님 안녕하세요</h3>
 					<br>
 					<button type="button" class="btn btn-secondary" id="cancle">주문 목록</button>
 					<button type="button" class="btn btn-secondary" id="cancle">장바구니</button>
@@ -71,7 +71,7 @@
 			</div>
 		</c:if>
 		
-		<c:if test="${member == null}">
+		<c:if test="${empty login}">
 			<div class="container hjForm row g-3 mx-auto">
 				<div class="col-12">
 					<h3>로그인 후 이용해주세요</h3>

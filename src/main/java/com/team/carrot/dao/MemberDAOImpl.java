@@ -5,23 +5,30 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.team.carrot.vo.LoginDTO;
 import com.team.carrot.vo.MemberVO;
 
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 	
-	@Inject SqlSession sql;
+	private static final String NAMESPACE = "memberMapper";
+	private final SqlSession sql;
+	
+	@Inject 
+	public MemberDAOImpl(SqlSession sql) {
+		this.sql = sql;
+	}
 
 	//회원가입
 	@Override
 	public void register(MemberVO vo) throws Exception {
-		sql.insert("memberMapper.register", vo);
+		sql.insert(NAMESPACE + ".register", vo);
 	}
-	//로그인
+	//로그인 처리
 	@Override
-	public MemberVO login(MemberVO vo) throws Exception {
-		return sql.selectOne("memberMapper.login", vo);
+	public MemberVO login(LoginDTO loginDTO) throws Exception {
+		return sql.selectOne(NAMESPACE + ".login", loginDTO);
 	}
 	//아이디찾기
 	@Override
@@ -35,8 +42,10 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public void change_pw(MemberVO vo) throws Exception {
-		sql.update("memberMapper.change_pw", vo);
+	public int change_pw(MemberVO vo) throws Exception {
+		return sql.update("memberMapper.change_pw", vo);
 	}
+	
+
 
 }

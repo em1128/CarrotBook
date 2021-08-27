@@ -27,21 +27,22 @@
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
-        <title>비밀번호 변경</title>
-			
+        <title>당근책 로그인</title>
+
 		<jsp:include page="${path}/static/include/header.jsp"/>
-		
 		<link rel="stylesheet" href="${path}/css/style.css">
-		
+			
     </head>
     
 	 <script type="text/javascript">
 	 $(document).ready(function(){
-			// 취소
+			// 돌아가기 눌렀을 때
 			$("#cancle").on("click", function(){
 				location.href = "${path}/home";
 			});
+			
 			$("#submit").on("click", function(){
+				//아이디, 비밀번호 입력 안했을 때
 				if($("#memberId").val()==""){
 					alert("아이디를 입력해주세요.");
 					$("#memberId").focus();
@@ -52,49 +53,41 @@
 					$("#memberPw").focus();
 					return false;
 				}
-				if($("#memberPw2").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#memberPw2").focus();
-					return false;
-				}
-				if($("#memberPw").val()!=$("#memberPw2").val()){
-					alert("비밀번호를 확인해주세요");
-					return false;
-				}
 			});
 		});
 	</script>
 
     <body>
     	 <div class="container">
-			<form class="hjForm row g-1 mx-auto" action="${path}/member/change_pw" method="post">
-				<h3>비밀번호 변경</h3>
-				<div class="col-md-12">
-					<label for="memberId" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="memberId" name="memberId">
-				</div>					
-				<div class="col-md-12">
-					<label for="memberPw" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" id="memberPw" name="memberPw">
-				</div>
-				<div class="col-md-12">
-					<label for="memberPw2" class="form-label">비밀번호 확인</label>
-					<input type="password" class="form-control" id="memberPw2" name="memberPw2">
-				</div>
-				<div class="col-12">
-					<button type="submit" class="btn btn-secondary" id="submit">비밀번호 변경</button>
-					<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
-				</div>
+    	 	<c:if test="${member.memberId == null && member.memberPw == null}">
+				<form class="hjForm row g-3 mx-auto" action="${path}/member/login" method="post">
+				<h3>당근책 로그인</h3>
+				
+					<div class="col-md-6">
+						<label for="memberId" class="form-label">아이디</label>
+						<input type="text" class="form-control" id="memberId" name="memberId">
+					</div>
+				  
+					<div class="col-md-6">
+						<label for="memberPw" class="form-label">비밀번호</label>
+						<input type="password" class="form-control" id="memberPw" name="memberPw">
+					</div>
+					<div class="col-12">
+						<button type="submit" class="btn btn-secondary" id="submit">로그인</button>
+						<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
+					</div>
+					<div class="col-12">
+						<a href="${path}/member/find_id">아이디 찾기</a>
+						<a href="${path}/member/find_pw">비밀번호 찾기</a>
+					</div>
+				</form>
+			</c:if>
+			<form>
+				<c:if test="${member.memberId != null && member.memberPw != null}">
+					${member.memberId}님 반갑습니다
+				</c:if>
 			</form>
 		</div>
-		<script>
-			var msg_pw="${msg_pw}";
-			if(msg_pw =="0"){
-				alert("아이디를 확인해주세요");
-			}else if(msg_pw =="1"){
-				alert("비밀번호가 변경되었습니다");
-			}
-		</script>
     </body>
     <jsp:include page="${path}/static/include/footer.jsp"/>
 </html>
