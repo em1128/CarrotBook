@@ -33,7 +33,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<title>당근책 로그인</title>
+<title>당근책 회원 탈퇴</title>
 
 <jsp:include page="${path}/static/include/header.jsp" />
 <link rel="stylesheet" href="${path}/css/style.css">
@@ -59,21 +59,20 @@
 					$("#memberPw").focus();
 					return false;
 				}
+				if(vo == null || !BCrypt.checkpw(loginDTO.getMemberPw(), vo.getMemberPw())){
+					alert("아이디와 비밀번호를 확인해주세요.");
+					return false;
+				}
 			});
 		});
 	</script>
 
 	<body>
 		<c:if test="${not empty login}">
-			<script>
-				self.location = "/member/myPage";	
-			</script>
-		</c:if>
-		<c:if test="${empty login}">
 			<div class="container">
-				<form class="hjForm row g-3 mx-auto" action="${path}/member/loginPost"
+				<form class="hjForm row g-3 mx-auto" action="${path}/member/delete_member"
 					method="post">
-					<h3>당근책 로그인</h3>
+					<h3>당근책 회원 탈퇴</h3>
 		
 					<div class="col-md-6">
 						<label for="memberId" class="form-label">아이디</label>
@@ -85,30 +84,16 @@
 						<input type="password" class="form-control" id="memberPw" name="memberPw">
 					</div>
 					<div class="col-12">
-						<label><input type="checkbox" name="useCookie"> 로그인
-							유지 </label><br />
-						<button type="submit" class="btn btn-secondary" id="submit">로그인</button>
+						<button type="submit" class="btn btn-secondary" id="submit">회원 탈퇴</button>
 						<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
-					</div>
-					<div class="col-12">
-						<a href="${path}/member/find_id">아이디 찾기</a>
-						<a href="${path}/member/find_pw">비밀번호 찾기</a>
 					</div>
 				</form>
 			</div>
 	
 			<script>
-				var msg="${msg}";
-				var msg_update="${msg_update}";
 				var msg_delete="${msg_delete}";
-				if(msg == "ok"){
-					alert("회원가입이 완료되었습니다. 로그인해주세요.");
-				}else if(msg == "failure"){
-					alert("아이디와 비밀번호를 확인해주세요");
-				}else if(msg_update == "1"){
-					alert("회원정보 수정이 완료되었습니다. 다시 로그인해주세요");
-				}else if(msg_delete == "1"){
-					alert("회원 탈퇴가 완료되었습니다.");
+				if(msg_delete == "0"){
+					alert("회원 탈퇴에 실패했습니다. 입력한 정보를 확인해주세요.");
 				}
 			</script>
 		</c:if>

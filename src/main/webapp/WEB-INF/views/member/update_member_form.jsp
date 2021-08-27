@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -27,11 +27,11 @@
 
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
-        <title>당근책 회원가입</title>
+        <title>당근책 회원정보 수정</title>
 
 		<jsp:include page="${path}/static/include/header.jsp"/>
 		
-		<link rel="stylesheet" href="${path}/css/style.css">
+		<link rel="stylesheet" href="${path}/css/myCss.css">
 		
     </head>
     
@@ -53,59 +53,32 @@
 					$("#memberPw").focus();
 					return false;
 				}
-				if($("#memberPw").val()!=$("#memberPw2").val()){
-					alert("비밀번호를 확인해주세요.");
-					$("#memberPw").focus();
-					return false;
-				}
-				if($("#memberName").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#memberName").focus();
-					return false;
-				}
-				if($("#phone").val()==""){
-					alert("핸드폰 번호를 입력해주세요.");
-					$("#phone").focus();
-					return false;
-				}
 			});
 		});
 	</script>
     
     <body>
-	    <div class="container">
-			<form class="hjForm row g-3 mx-auto" action="${path}/member/register" method="post">
-				<h3>당근책 회원가입</h3>
-				<c:if test="${member == null}">
+		<c:if test="${not empty login}">   
+		    <section id="container">
+				<form class="hjForm row g-3 mx-auto" action="${path}/member/delete_member" method="post">
+					<h3>회원정보 수정</h3>
 					<div class="col-md-12">
 						<label for="memberId" class="form-label">아이디</label>
-						<input type="text" class="form-control" id="memberId" name="memberId" placeholder="15자 이내의 영어, 숫자만 입력 가능합니다.">
-					</div>
-				  
-					<div class="col-md-6">
-						<label for="memberPw" class="form-label">비밀번호</label>
-						<input type="password" class="form-control" id="memberPw" name="memberPw" placeholder="비밀번호">
-					</div>
-					
-					<div class="col-md-6">
-						<label for="memberPw2" class="form-label">비밀번호 확인</label>
-						<input type="password" class="form-control" id="memberPw2" name="memberPw2" placeholder="비밀번호 확인">
-					</div>
-					
-					  
+						<input type="text" class="form-control" id="memberId" name="memberId" value="${login.memberId}" readonly="readonly">
+					</div>					  
 					<div class="col-md-12">
 						<label for="memberName" class="form-label">이름</label>
-						<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력해주세요">
+						<input type="text" class="form-control" id="memberName" name="memberName" value="${login.memberName}">
 					</div>
 					  
 					<div class="col-md-12">
 						<label for="phone" class="form-label">휴대폰 번호</label>
-						<input type="text" class="form-control" id="phone" name="phone" placeholder="휴대폰 번호('-'없이 번호만 입력해주세요)">
+						<input type="text" class="form-control" id="phone" name="phone" value="${login.phone}">
 					</div>
 					
 					<div class="col-md-12">
 						<label for="birthday" class="form-label">생년월일</label>
-						<input type="text" class="form-control" id="birthday" name="birthday" placeholder="ex) 19920315">
+						<input type="text" class="form-control" id="birthday" name="birthday" value="${login.birthday}">
 					</div>
 					
 					<div class="col-md-12">
@@ -129,15 +102,18 @@
 					</div>
 				
 					<div class="col-12">
-						<button type="submit" class="btn btn-secondary" id="submit">회원 가입</button>
+						<button type="submit" class="btn btn-secondary" id="submit">정보 수정</button>
 						<button class="btn btn-secondary" type="button" id="cancle">돌아가기</button>
 					</div>
-				</c:if>
-				<c:if test="${member != null}">
-					${member.memberId}님 반갑습니다
-				</c:if>
-			</form>
-		</div>
+				</form>
+			</section>
+		</c:if>
+		<script>
+			var msg_update="${msg_update}";
+			if(msg_update =="0"){
+				alert("회원정보 변경에 실패하였습니다");
+			}
+		</script>
     </body>
 	<jsp:include page="${path}/static/include/footer.jsp"/>   
 </html>

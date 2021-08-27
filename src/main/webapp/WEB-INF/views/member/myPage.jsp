@@ -48,10 +48,10 @@
 			location.href = "${path}/member/change_pw_form";
 		});
 		$("#update_member").on("click", function() {
-			location.href = "${path}/member/update_member";
+			location.href = "${path}/member/update_member_form";
 		});
 		$("#delete_member").on("click", function() {
-			location.href = "${path}/member/delete_member";
+			location.href = "${path}/member/delete_member_form";
 		});
 	});
 	</script>
