@@ -56,7 +56,7 @@
 									<input type="text" id="writer" name="writer" class="form-control" />
 							</div>
 							<div>					
-									<button type="submit" onclick="registcheck()">작성</button>
+									<button type="submit" onclick="registcheck()" style="margin-top:20px;">작성</button>
 							</div>				
 				</form>
 			</section>
