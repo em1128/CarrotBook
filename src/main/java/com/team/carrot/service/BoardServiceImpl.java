@@ -5,10 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.team.carrot.dao.BoardDAO;
 import com.team.carrot.vo.BoardVO;
-import com.team.carrot.vo.Criteria;
 import com.team.carrot.vo.SearchCriteria;
 
 @Service
@@ -36,17 +37,23 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	//게시물 조회
+	//게시물 조회할때 오류가 나면 조회수 올라가지 않도록
+	//Transactional 어노테이션이 필요함.
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(int bno) throws Exception {
+		dao.boardHit(bno);
 		return dao.read(bno);
 	}
-
+	
+	//게시물 수정
 	@Override
 	public void update(BoardVO boardVO) throws Exception {
 		dao.update(boardVO);
 		
 	}
-
+	
+	//게시물 삭제
 	@Override
 	public void delete(int bno) throws Exception {
 		dao.delete(bno);

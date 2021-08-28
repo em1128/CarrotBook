@@ -17,7 +17,7 @@
 		</style>
 	</head>
 	
-	<body style="width:90%; height: 100px; margin: auto; text-align: center;">
+	<body style="text-align: center;">
 
 			<%@include file="/static/include/header.jsp" %>
 <%-- 			 <div >
@@ -28,8 +28,7 @@
 				<form role="form" method="get"> <!-- action="/board/write" -->
 					<table class="table" style="width:70%; height: 100px; margin: auto; margin-top:30px; text-align: center;">
 						<thead class="table-dark">
-						<tr><td><strong>번호</strong></td><td><strong>제목</strong></td>
-						<td><strong>작성자</strong></td><td><strong>등록일</strong></td></tr>
+						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th></tr>
 						</thead>
 						<tbody>
 						<c:forEach items="${list}" var = "list">
@@ -43,6 +42,7 @@
 								</td>
 								<td><c:out value="${list.writer}" /></td>
 								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
+								<td><c:out value="${list.hit }" /></td>
 							</tr>
 						</c:forEach>
 						</tbody>

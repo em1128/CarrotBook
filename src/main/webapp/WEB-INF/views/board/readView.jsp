@@ -70,7 +70,7 @@
 			});
 		})
 	</script>
-	<body style="width:90%; height: 100px; margin: auto;">
+	<body>
 			<%@include file="/static/include/header.jsp" %>
 			
 			<section id="container" class="mx-auto" style="width:1000px;">
@@ -123,7 +123,7 @@
 				    </c:forEach>   
 				  </ol>
 				</div>
-				<form name="replyForm" method="post" class="form-horizontal">
+				<form name="replyForm" method="post" class="form-horizontal" >
 				  <input type="hidden" id="bno" name="bno" value="${read.bno}" />
 				  <input type="hidden" id="page" name="page" value="${scri.page}"> 
 				  <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
@@ -145,7 +145,7 @@
 					</div>
 				  <div class="form-group">
 				  <div class="col-sm-offset-2 col-sm-10">
-				 	 <button type="button" class="replyWriteBtn">작성</button>
+				 	 <button type="button" class="replyWriteBtn" style="margin-top:10px;">작성</button>
 				  </div>
 				  </div>
 				</form>
