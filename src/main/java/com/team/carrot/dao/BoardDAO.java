@@ -1,6 +1,7 @@
 package com.team.carrot.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.team.carrot.vo.BoardVO;
 import com.team.carrot.vo.Criteria;
@@ -28,6 +29,9 @@ public interface BoardDAO {
 	
 	//게시판 조회수
 	public void boardHit(int bno) throws Exception;
+	
+	//첨부파일 업로드
+	public void insertFile(Map<String, Object> map) throws Exception;
 
 
 }
