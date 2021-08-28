@@ -11,12 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.carrot.service.BoardService;
 import com.team.carrot.service.ReplyService;
 import com.team.carrot.vo.BoardVO;
-import com.team.carrot.vo.Criteria;
 import com.team.carrot.vo.PageMaker;
 import com.team.carrot.vo.ReplyVO;
 import com.team.carrot.vo.SearchCriteria;
@@ -40,12 +40,12 @@ public class BoardController {
 		
 	}
 	
-	// 게시판 글 작성
+	// 게시판 글 작성 ,MultipartHttpServlertRequest mpRequest = 첨부파일 파라미터값 받음
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO) throws Exception{
+	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
 		logger.info("write");
 		
-		service.write(boardVO);
+		service.write(boardVO,mpRequest); 
 		
 		return "redirect:/board/list";
 	}

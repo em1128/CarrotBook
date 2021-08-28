@@ -74,7 +74,7 @@
 			<%@include file="/static/include/header.jsp" %>
 			
 			<section id="container" class="mx-auto" style="width:1000px;">
-				<form name="readForm" role="form" method="post">
+				<form name="readForm" role="form" method="post"> <!-- scri 값을 보관하기위해 hidden으로 설정 -->
 					<input type="hidden" id="bno" name="bno" value="${read.bno}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 

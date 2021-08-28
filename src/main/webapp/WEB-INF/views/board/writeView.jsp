@@ -40,7 +40,7 @@
 			<%@include file="/static/include/header.jsp" %>
 
 		<section id="container" class="mx-auto" style="width:1000px;">
-				<form name="writeform" role="form" method="post" action="/board/write">
+				<form name="writeform" role="form" method="post" action="/board/write" enctype="multipart/form-data">
 					
 						
 							<div class="form-group">
@@ -54,6 +54,9 @@
 							<div class="form-group" >
 									<label for="writer" class="col-sm-2 control-label">작성자</label>
 									<input type="text" id="writer" name="writer" class="form-control" />
+							</div>
+							<div class="form-group" style="margin-top:30px;">
+									<input type="file" name="file" class="form-control" />
 							</div>
 							<div>					
 									<button type="submit" onclick="registcheck()" style="margin-top:20px;">작성</button>
