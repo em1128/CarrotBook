@@ -25,7 +25,7 @@
 		})
 		
 	</script>
-	<body style="width:90%; height: 100px; margin: auto; text-align: center;">
+	<body style="text-align: center;">
 			<%@include file="/static/include/header.jsp" %>
 
 			<section id="container" class="mx-auto" style="width:1000px;">

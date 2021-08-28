@@ -45,7 +45,7 @@
 		}
 		
 	</script>
-	<body style="width:90%; height: 100px; margin: auto;">
+	<body>
 	
 <!-- 		<div id="root">
 			<header>
