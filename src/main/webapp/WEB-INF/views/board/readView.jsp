@@ -75,6 +75,13 @@
 					+ "&rno="+$(this).attr("data-rno");
 			});
 		})
+		//파일다운
+		function fn_fileDown(fileNo){
+			var formObj = $("form[name='readForm']");
+			$("#FILE_NO").attr("value", fileNo);
+			formObj.attr("action", "/board/fileDown");
+			formObj.submit();
+		}
 	</script>
 	<body>
 			<%@include file="/static/include/header.jsp" %>
@@ -86,6 +93,7 @@
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					<input type="hidden" id="FILE_NO" name="FILE_NO" value=""> 
 				</form>
 				
 				<div class="form-group">
