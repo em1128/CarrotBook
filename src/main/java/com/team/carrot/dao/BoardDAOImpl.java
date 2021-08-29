@@ -67,5 +67,12 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert("boardMapper.insertFile", map);
 		
 	}
+	
+	//첨부파일 조회
+	//List형식으로 한 이유는 나중에 여러개의 파일을 등록할 수 있도록 하기 위함.
+	@Override
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
+		return sqlSession.selectList("boardMapper.selectFileList", bno); //파라미터를 bno로 보내줌
+	}
 
 }

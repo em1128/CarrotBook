@@ -1,6 +1,7 @@
 package com.team.carrot.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -77,6 +78,11 @@ public class BoardController {
 		
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
 		model.addAttribute("replyList", replyList);
+		
+		//selectFileList에 파라미터값(게시글 조회한 번호)을 넣어주고 Map타입의 List타입 fileList에 넣어줌
+		//model.addAttribute를 이용하여 fileList를 file이라는 이름으로 jsp에 값을 보낼준비
+		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
+		model.addAttribute("file", fileList);
 		
 		return "board/readView";
 	}

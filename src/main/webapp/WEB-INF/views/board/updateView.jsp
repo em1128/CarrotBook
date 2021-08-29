@@ -10,6 +10,13 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 	 	<title>게시판</title>
+	 	
+	 <style type="text/css">
+	 	.form-group {
+	 		margin-top: 20px;
+	 	}
+	 </style>
+	 
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -59,11 +66,15 @@
 				<form name="updateForm" role="form" method="post" action="/board/update">
 					<input type="hidden" name="bno" value="${update.bno}" readonly="readonly"/>
 					
-				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label" style="margin-top:30px;">제목</label>
+				<div class="form-group" >
+					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
+					<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd" />	
+				</div>
+				<div class="form-group" >
+					<label for="title" class="col-sm-2 control-label">제목</label>
 					<input type="text" id="title" name="title" class="form-control" value="${update.title}" />
 				</div>
-				<div class="form-group">
+				<div class="form-group" >
 					<label for="content" class="col-sm-2 control-label">내용</label>
 					<textarea id="content" name="content" class="form-control" ><c:out value="${update.content}" /></textarea>
 				</div>
@@ -71,12 +82,8 @@
 					<label for="writer" class="col-sm-2 control-label">작성자</label>
 					<input type="text" id="writer" name="writer" class="form-control" value="${update.writer}"  readonly="readonly"/>
 				</div>
-				<div class="form-group">
-					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-					<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd" />	
-				</div>
 					
-					<div>
+					<div class="form-group" >
 						<button type="submit" class="update_btn">저장</button>
 						<button type="submit" class="cancel_btn">취소</button>
 					</div>
