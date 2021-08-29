@@ -10,9 +10,13 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 	 	<title>글 작성</title>
-	 	<style type="text/css">
-			/* li {list-style: none; float: left; padding: 6px; font-size: 12pt;} */
-		</style>
+	 	
+ 	 <style type="text/css">
+	 	.form-group {
+	 		margin-top: 20px;
+	 	}
+	 </style>	
+	 
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -44,7 +48,7 @@
 					
 						
 							<div class="form-group">
-									<label for="title" class="col-sm-2 control-label" style="margin-top:30px;">제목</label>
+									<label for="title" class="col-sm-2 control-label" >제목</label>
 									<input type="text" id="title" name="title" class="form-control"/>
 							</div>
 							<div class="form-group">
@@ -55,7 +59,7 @@
 									<label for="writer" class="col-sm-2 control-label">작성자</label>
 									<input type="text" id="writer" name="writer" class="form-control" />
 							</div>
-							<div class="form-group" style="margin-top:30px;">
+							<div class="form-group" >
 									<input type="file" name="file" class="form-control" />
 							</div>
 							<div>					

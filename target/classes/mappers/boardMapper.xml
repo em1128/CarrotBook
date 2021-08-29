@@ -107,6 +107,16 @@
 			#{FILE_SIZE}
 		)
     </insert>
-	
+    
+    <!-- 첨부파일 조회, #{BNO}에 471이 들어가면 471번 글의 첨부된 파일 목록들이 나옴-->
+    <!-- ROUND를 이용하여 1024로 파일크기를 나누어 1024당 1로 계산 -->
+	<select id="selectFileList" parameterType="int" resultType="hashMap">
+		SELECT FILE_NO,
+			ORG_FILE_NAME,
+			ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		FROM BOARD_FILE
+		WHERE BNO = #{BNO}
+			AND DEL_GB='N'
+	</select>
 	
 </mapper>

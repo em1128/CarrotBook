@@ -10,6 +10,12 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
 	 	<title>게시판</title>
+	 	
+ 	 <style type="text/css">
+	 	.form-group {
+	 		margin-top: 20px;
+	 	}
+	 </style>	
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -83,7 +89,11 @@
 				</form>
 				
 				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label" style="margin-top:20px;">제목</label>
+					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
+					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />	
+				</div>
+				<div class="form-group">
+					<label for="title" class="col-sm-2 control-label">제목</label>
 					<input type="text" id="title" name="title" class="form-control" value="${read.title}" readonly="readonly" />
 				</div>
 				<div class="form-group">
@@ -94,12 +104,15 @@
 					<label for="writer" class="col-sm-2 control-label">작성자</label>
 					<input type="text" id="writer" name="writer" class="form-control" value="${read.writer}"  readonly="readonly"/>
 				</div>
-				<div class="form-group">
-					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />	
+				
+				<div class="form-group" style="border: 1px solid #dbdbdb;">
+				<span>파일 목록</span><br>
+					<c:forEach var="file" items="${file}">
+						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
+					</c:forEach>
 				</div>
 				
-				<div>
+				<div class="form-group">
 					<button type="submit" class="update_btn">수정</button>
 					<button type="submit" class="delete_btn">삭제</button>
 					<button type="submit" class="list_btn">목록</button>	
@@ -137,16 +150,15 @@
 						</div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group1">
 						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
 						<div class="col-sm-8">
 							<input type="text" id="content" name="content" class="form-control"/>
 						</div>
 					</div>
-				  <div class="form-group">
+				  
 				  <div class="col-sm-offset-2 col-sm-10">
 				 	 <button type="button" class="replyWriteBtn" style="margin-top:10px;">작성</button>
-				  </div>
 				  </div>
 				</form>
 			</section>
