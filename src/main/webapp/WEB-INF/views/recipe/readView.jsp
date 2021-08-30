@@ -32,40 +32,26 @@
 		<title>당근책 로그인</title>
 		
 		<jsp:include page="${path}/static/include/header.jsp" />
-		<link rel="stylesheet" href="${path}/css/style.css">
+		<link rel="stylesheet" href="${path}/css/myCss.css">
 	
 	</head>
 	<body>
 		<c:if test="${not empty login}">
 			<div class="container hjForm">
 				<form role="form" method="post">
-					<table>
+					<table class="hjForm2">
 						<tbody>
+							<tr><td>${read.recipe_category}</td></tr>	
+							<tr class="title"><td>${read.recipe_title}</td></tr>
 							<tr>
 								<td>
-									<label for="recipe_bno">번호</label><input type="text" id="recipe_bno" name="recipe_bno" value="${read.recipe_bno}"/>
-								</td>
-							</tr>	
-							<tr>
-								<td>
-									<label for="recipe_title">요리 제목</label><input type="text" id="recipe_title" name="recipe_title" value="${read.recipe_title}"/>
-								</td>
-							</tr>	
-							<tr>
-								<td>
-									<label for="ingredients">재료</label><input type="text" id="ingredients" name="ingredients" value="${read.ingredients}" />
+									<img src="/imgs/recipe/${read.recipe_title}.jpg">
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<label for="directions">조리 과정</label><input type="text" id="directions" name="directions" value="${read.directions}" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="recipe_category">조리 과정</label><input type="text" id="recipe_category" name="recipe_category" value="${read.recipe_category}" />
-								</td>
-							</tr>
+							<tr class="title2"><td>요리 재료</td></tr>
+							<tr><td>${read.ingredients}</td></tr>
+							<tr class="title2"><td>만드는 방법</td></tr>
+							<tr><td>${read.directions}</tr>
 						</tbody>			
 					</table>
 				</form>

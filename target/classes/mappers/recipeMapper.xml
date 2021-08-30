@@ -11,5 +11,9 @@
 	<select id="read" parameterType="int" resultType="com.team.carrot.vo.RecipeVO">
 		SELECT * FROM recipe WHERE recipe_bno=#{recipe_bno}
 	</select>
+	
+	<select id="list_cate" resultType="com.team.carrot.vo.RecipeVO">
+		SELECT * FROM recipe WHERE recipe_category=#{recipe_category} ORDER BY recipe_bno DESC
+	</select>
 
 </mapper>
