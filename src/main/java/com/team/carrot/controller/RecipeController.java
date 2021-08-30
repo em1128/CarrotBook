@@ -31,4 +31,11 @@ public class RecipeController {
 		return "recipe/readView";
 	}
 	
+	//레시피 목록 조회
+	@RequestMapping(value = "/list_cate", method = RequestMethod.GET)
+	public String read_cate(RecipeVO vo, Model model) throws Exception{
+		model.addAttribute("list_cate",service.list_cate(vo.getRecipe_category()));
+		return "recipe/list_cate";	
+	}
+	
 }

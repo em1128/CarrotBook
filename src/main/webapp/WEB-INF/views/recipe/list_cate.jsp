@@ -33,7 +33,6 @@
 		
 		<jsp:include page="${path}/static/include/header.jsp" />
 		<link rel="stylesheet" href="${path}/css/myCss.css">
-		
 	
 	</head>
 	<body>
@@ -49,11 +48,11 @@
 						<br/>
 					</div>
 					<table class=hjForm2>
-						<c:forEach items="${list}" var="list">
-							<tr onClick="location.href='${path}/recipe/readView?recipe_bno=${list.recipe_bno}';">
-								<td><c:out value="${list.recipe_category}" /></td>
-								<td><img src="/imgs/recipe/${list.recipe_title}.jpg" class="rounded float-start"></td>
-								<td><c:out value="${list.recipe_title}" /></td>
+						<c:forEach items="${list_cate}" var="list_cate">
+							<tr onClick="location.href='${path}/recipe/readView?recipe_bno=${list_cate.recipe_bno}';">
+								<td><c:out value="${list_cate.recipe_category}" /></td>
+								<td><img src="/imgs/recipe/${list_cate.recipe_title}.jpg"></td>
+								<td><c:out value="${list_cate.recipe_title}" /></td>
 							</tr>
 						</c:forEach>	
 					</table>
@@ -61,6 +60,5 @@
 			</div>
 		</c:if>
 	</body>
-	
 	<jsp:include page="${path}/static/include/footer.jsp" />
 </html>
