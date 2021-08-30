@@ -38,21 +38,37 @@
 	<body>
 		<c:if test="${not empty login}">
 			<div class="container hjForm">
-				<table class="hjTable">
-					<c:forEach items="${list}" var="list">
-						<tr>
-							<td>
-								<a href="/recipe/readView?recipe_bno=${list.recipe_bno}"><c:out value="${list.recipe_bno}" /></a>
-							</td>
-							<td>
-								<a href="/recipe/read?recipe_category=${list.recipe_category}"><c:out value="${list.recipe_category}" /></a>
-							</td>
-							<td><img src="./imgs/recipe/${list.recipe_title}.jpg"></td>
-							<td><c:out value="${list.recipe_title}" /></td>
-							<td><c:out value="${list.recipe_category}" /></td>
-						</tr>
-					</c:forEach>	
-				</table>
+				<form role="form" method="post">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<label for="recipe_bno">번호</label><input type="text" id="recipe_bno" name="recipe_bno" value="${read.recipe_bno}"/>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<label for="recipe_title">요리 제목</label><input type="text" id="recipe_title" name="recipe_title" value="${read.recipe_title}"/>
+								</td>
+							</tr>	
+							<tr>
+								<td>
+									<label for="ingredients">재료</label><input type="text" id="ingredients" name="ingredients" value="${read.ingredients}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="directions">조리 과정</label><input type="text" id="directions" name="directions" value="${read.directions}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="recipe_category">조리 과정</label><input type="text" id="recipe_category" name="recipe_category" value="${read.recipe_category}" />
+								</td>
+							</tr>
+						</tbody>			
+					</table>
+				</form>
 			</div>
 		</c:if>
 	</body>

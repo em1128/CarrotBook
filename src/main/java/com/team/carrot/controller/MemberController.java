@@ -4,15 +4,12 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team.carrot.dao.MemberDAO;
 import com.team.carrot.service.MemberService;
-import com.team.carrot.vo.LoginDTO;
 import com.team.carrot.vo.MemberVO;
 
 
@@ -37,8 +34,6 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo, RedirectAttributes rttr) throws Exception {
 
-		String hashedPw = BCrypt.hashpw(vo.getMemberPw(), BCrypt.gensalt());
-		vo.setMemberPw(hashedPw);
 		service.register(vo);
 		rttr.addFlashAttribute("msg", "ok");
 		
@@ -49,7 +44,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "home";
+		return "/";
 	}
 	
 	// 아이디 찾기 get
@@ -116,8 +111,6 @@ public class MemberController {
 	//비밀번호 변경 post
 	@RequestMapping(value="/change_pw", method = RequestMethod.POST)
 	public String post_change_pw(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
-		String hashedPw = BCrypt.hashpw(vo.getMemberPw(), BCrypt.gensalt());
-		vo.setMemberPw(hashedPw);
 		int msg_pw = service.change_pw(vo);		
 		session.invalidate();
 		
