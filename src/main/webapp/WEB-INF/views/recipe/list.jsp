@@ -29,7 +29,7 @@
 		<script
 			src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
-		<title>당근책 로그인</title>
+		<title>레시피</title>
 		
 		<jsp:include page="${path}/static/include/header.jsp" />
 		<link rel="stylesheet" href="${path}/css/myCss.css">

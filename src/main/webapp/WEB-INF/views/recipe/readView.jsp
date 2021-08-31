@@ -29,33 +29,29 @@
 		<script
 			src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		
-		<title>당근책 로그인</title>
+		<title>레시피</title>
 		
 		<jsp:include page="${path}/static/include/header.jsp" />
-		<link rel="stylesheet" href="${path}/css/myCss.css">
-	
+		<link rel="stylesheet" href="${path}/css/myCss.css">	
 	</head>
 	<body>
 		<c:if test="${not empty login}">
 			<div class="container hjForm">
-				<form role="form" method="post">
-					<table class="hjForm2">
-						<tbody>
-							<tr><td>${read.recipe_category}</td></tr>	
-							<tr class="title"><td>${read.recipe_title}</td></tr>
-							<tr>
-								<td>
-									<img src="/imgs/recipe/${read.recipe_title}.jpg">
-								</td>
-							</tr>
-							<tr class="title2"><td>요리 재료</td></tr>
-							<tr><td>${read.ingredients}</td></tr>
-							<tr class="title2"><td>만드는 방법</td></tr>
-							<tr><td>${read.directions}</tr>
-							<tr><td><button type="submit" class="btn btn-secondary" id="submit">장바구니에 담기</button></td></tr>
-						</tbody>			
-					</table>
-				</form>
+				<table class="hjForm2">
+					<tbody>
+						<tr><td>${read.recipe_category}</td></tr>	
+						<tr class="title"><td>${read.recipe_title}</td></tr>
+						<tr>
+							<td>
+								<img src="/imgs/recipe/${read.recipe_title}.jpg">
+							</td>
+						</tr>
+						<tr class="title2"><td>요리 재료</td></tr>
+						<tr><td>${read.ingredients}</td></tr>
+						<tr class="title2"><td>만드는 방법</td></tr>
+						<tr><td>${read.directions}</tr>
+					</tbody>			
+				</table>
 			</div>
 		</c:if>
 	</body>
