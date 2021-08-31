@@ -34,26 +34,17 @@
     </head>
     
     <script type="text/javascript">
-	$(document).ready(function() {
-		$("#cancle").on("click", function() {
-			location.href = "${path}/#";
+		$(document).ready(function() {
+			$("#change_pw").on("click", function() {
+				location.href = "${path}/member/change_pw_form";
+			});
+			$("#update_member").on("click", function() {
+				location.href = "${path}/member/update_member_form";
+			});
+			$("#delete_member").on("click", function() {
+				location.href = "${path}/member/delete_member_form";
+			});
 		});
-		$("#register").on("click", function() {
-			location.href = "${path}/member/register";
-		});
-		$("#login").on("click", function() {
-			location.href = "${path}/member/login";
-		});
-		$("#change_pw").on("click", function() {
-			location.href = "${path}/member/change_pw_form";
-		});
-		$("#update_member").on("click", function() {
-			location.href = "${path}/member/update_member_form";
-		});
-		$("#delete_member").on("click", function() {
-			location.href = "${path}/member/delete_member_form";
-		});
-	});
 	</script>
 	
     <body>
@@ -62,8 +53,6 @@
 				<div class="col-12">
 					<h3>${login.memberId} 회원님 안녕하세요</h3>
 					<br>
-					<button type="button" class="btn btn-secondary" id="cancle">주문 목록</button>
-					<button type="button" class="btn btn-secondary" id="cancle">장바구니</button>
 					<button type="button" class="btn btn-secondary" id="update_member">회원 정보 수정</button>
 					<button type="button" class="btn btn-secondary" id="change_pw">비밀번호 변경</button>
 					<button type="button" class="btn btn-secondary" id="delete_member">회원 탈퇴</button>

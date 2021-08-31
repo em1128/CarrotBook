@@ -101,6 +101,7 @@
 				var msg="${msg}";
 				var msg_update="${msg_update}";
 				var msg_delete="${msg_delete}";
+				var msg_pw="${msg_pw}";
 				if(msg == "ok"){
 					alert("회원가입이 완료되었습니다. 로그인해주세요.");
 				}else if(msg == "fail"){
@@ -109,6 +110,8 @@
 					alert("회원정보 수정이 완료되었습니다. 다시 로그인해주세요");
 				}else if(msg_delete == "1"){
 					alert("회원 탈퇴가 완료되었습니다.");
+				}else if(msg_pw =="1"){
+					alert("비밀번호가 변경되었습니다");
 				}
 			</script>
 		</c:if>
