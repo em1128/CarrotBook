@@ -30,4 +30,9 @@ public class RecipeServiceImpl implements RecipeService {
 		return dao.list_cate(recipe_category);
 	}
 
+	@Override
+	public RecipeVO read_ingredients(int recipe_bno) throws Exception {
+		return dao.read_ingredients(recipe_bno);
+	}
+
 }

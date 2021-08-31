@@ -30,4 +30,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return sql.selectList("recipeMapper.list_cate", recipe_category);
 	}
 
+	@Override
+	public RecipeVO read_ingredients(int recipe_bno) throws Exception {
+		return sql.selectOne("recipeMapper.read", recipe_bno);
+	}
+
 }

@@ -37,5 +37,4 @@ public class RecipeController {
 		model.addAttribute("list_cate",service.list_cate(vo.getRecipe_category()));
 		return "recipe/list_cate";	
 	}
-	
 }

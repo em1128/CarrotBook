@@ -40,7 +40,7 @@
 
 </head>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	 $(document).ready(function(){
 			// 돌아가기 눌렀을 때
 			$("#cancle").on("click", function(){
