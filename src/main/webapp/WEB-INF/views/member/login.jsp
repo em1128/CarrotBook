@@ -36,7 +36,7 @@
 <title>당근책 로그인</title>
 
 <jsp:include page="${path}/static/include/header.jsp" />
-<link rel="stylesheet" href="${path}/css/style.css">
+<link rel="stylesheet" href="${path}/css/myCss.css">
 
 </head>
 
@@ -44,7 +44,7 @@
 	 $(document).ready(function(){
 			// 돌아가기 눌렀을 때
 			$("#cancle").on("click", function(){
-				location.href = "${path}/home";
+				location.href = "${path}/";
 			});
 			
 			$("#submit").on("click", function(){

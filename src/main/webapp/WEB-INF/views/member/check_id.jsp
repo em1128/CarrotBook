@@ -28,7 +28,7 @@
 		<title>아이디 찾기</title>
 		<jsp:include page="${path}/static/include/header.jsp"/>
 		
-		<link rel="stylesheet" href="${path}/css/style.css">
+		<link rel="stylesheet" href="${path}/css/myCss.css">
 		
 	</head>
 	
