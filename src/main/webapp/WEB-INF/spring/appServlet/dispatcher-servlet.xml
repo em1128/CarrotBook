@@ -23,6 +23,7 @@
 			<mvc:mapping path="/member/myPage"/>
 			<mvc:mapping path="/member/update_member"/>
 			<mvc:mapping path="/member/delete_member"/>
+			<mvc:mapping path="/scheduler"/>
 			<ref bean="AuthInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

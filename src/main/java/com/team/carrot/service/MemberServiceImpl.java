@@ -2,14 +2,11 @@ package com.team.carrot.service;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.team.carrot.dao.MemberDAO;
 import com.team.carrot.vo.LoginDTO;
 import com.team.carrot.vo.MemberVO;
-
-
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -55,6 +52,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int delete_member(MemberVO vo) throws Exception {
 		return dao.delete_member(vo);
+	}
+
+	@Override
+	public int idChk(MemberVO vo) throws Exception {
+		int result = dao.idChk(vo);
+		return result;
+	}
+
+	@Override
+	public int passChk(MemberVO vo) throws Exception {
+		int result = dao.passChk(vo);
+		return result;
 	}
 
 }

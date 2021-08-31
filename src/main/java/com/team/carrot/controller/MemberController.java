@@ -4,9 +4,11 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.carrot.service.MemberService;
@@ -24,19 +26,40 @@ public class MemberController {
 		this.service = service;
 	}
 	
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
+	
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegister() throws Exception {
 		return "/member/register";
 	}
 	
+	// 아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/idChk", method = RequestMethod.POST)
+	public int idChk(MemberVO vo) throws Exception {
+		int result = service.idChk(vo);
+		return result;
+	}
+	
 	// 회원가입 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo, RedirectAttributes rttr) throws Exception {
-
-		service.register(vo);
-		rttr.addFlashAttribute("msg", "ok");
-		
+		int result = service.idChk(vo);
+		try {
+			if(result == 1) {	//id가 중복되면
+				return "/member/register";
+			}else if(result == 0) {	//중복되지 않으면 회원가입가능
+				String inputPass = vo.getMemberPw();
+				String pwd = pwdEncoder.encode(inputPass);
+				vo.setMemberPw(pwd);
+				service.register(vo);
+				rttr.addFlashAttribute("msg", "ok");
+			}
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
 		return "redirect:/member/login";
 	}
 	
@@ -111,6 +134,9 @@ public class MemberController {
 	//비밀번호 변경 post
 	@RequestMapping(value="/change_pw", method = RequestMethod.POST)
 	public String post_change_pw(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+		String inputPass = vo.getMemberPw();
+		String pwd = pwdEncoder.encode(inputPass);
+		vo.setMemberPw(pwd);
 		int msg_pw = service.change_pw(vo);		
 		session.invalidate();
 		
@@ -161,5 +187,6 @@ public class MemberController {
 			session.invalidate();
 			return "redirect:/member/login";
 		}
-	}	
+	}
+		
 }

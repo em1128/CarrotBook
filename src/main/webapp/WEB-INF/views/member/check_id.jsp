@@ -36,7 +36,7 @@
 		$(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "${path}/home";
+				location.href = "${path}/";
 			});
 			//로그인 페이지로
 			$("#login").on("click", function(){

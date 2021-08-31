@@ -45,7 +45,7 @@
 	 $(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "${path}/home";
+				location.href = "${path}/";
 			});
 		
 			$("#submit").on("click", function(){

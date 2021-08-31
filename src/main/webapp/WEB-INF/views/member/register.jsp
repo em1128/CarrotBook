@@ -68,8 +68,32 @@
 					$("#phone").focus();
 					return false;
 				}
+				var idChkVal = $("#idChk").val();
+				if(idChkVal == "N"){
+					alert("중복확인 버튼을 눌러주세요.");
+					return false;
+				}else if(idChkVal == "Y"){
+					$("#regForm").submit();
+				}
 			});
 		});
+		
+		function idChk_f(){
+			$.ajax({
+				url : "/member/idChk",
+				type : "post",
+				dataType : "json",
+				data : {"memberId" : $("#memberId").val()},
+				success : function(data){
+					if(data == 1){
+						alert("중복된 아이디입니다.");
+					}else if(data == 0){
+						$("#idChk").attr("value", "Y");
+						alert("사용가능한 아이디입니다.");
+					}
+				}
+			})
+		}
 	</script>
     
     <body>
@@ -85,6 +109,7 @@
 					<c:if test="${member == null}">
 						<div class="col-md-12">
 							<label for="memberId" class="form-label">아이디</label>
+							<button class="btn btn-secondary btn-sm" type="button" id="idChk" onclick="idChk_f();" value="N">중복확인</button>
 							<input type="text" class="form-control" id="memberId" name="memberId" placeholder="15자 이내의 영어, 숫자만 입력 가능합니다.">
 						</div>
 					  

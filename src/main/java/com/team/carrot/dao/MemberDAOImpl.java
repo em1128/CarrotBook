@@ -58,4 +58,16 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.delete("memberMapper.delete_member",vo);
 	}
 
+	@Override
+	public int idChk(MemberVO vo) throws Exception {
+		int result = sql.selectOne("memberMapper.idChk", vo);
+		return result;
+	}
+
+	@Override
+	public int passChk(MemberVO vo) throws Exception {
+		int result = sql.selectOne("memberMapper.passChk", vo);
+		return result;
+	}
+
 }

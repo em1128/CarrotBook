@@ -18,4 +18,9 @@ public interface MemberService {
 	public int update_member(MemberVO vo) throws Exception;
 	
 	public int delete_member(MemberVO vo) throws Exception;
+	
+	public int idChk(MemberVO vo) throws Exception;
+	
+	public int passChk(MemberVO vo) throws Exception;
+	
 }
