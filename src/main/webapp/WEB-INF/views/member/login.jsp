@@ -103,8 +103,8 @@
 				var msg_delete="${msg_delete}";
 				if(msg == "ok"){
 					alert("회원가입이 완료되었습니다. 로그인해주세요.");
-				}else if(msg == "failure"){
-					alert("아이디와 비밀번호를 확인해주세요");
+				}else if(msg == "fail"){
+					alert("입력한 정보를 확인해주세요");
 				}else if(msg_update == "1"){
 					alert("회원정보 수정이 완료되었습니다. 다시 로그인해주세요");
 				}else if(msg_delete == "1"){

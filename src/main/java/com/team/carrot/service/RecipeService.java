@@ -17,4 +17,5 @@ public interface RecipeService
 	
 	// 레시피 목록 조회
 	public RecipeVO read_ingredients(int recipe_bno) throws Exception;
+	
 }

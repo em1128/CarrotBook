@@ -44,7 +44,7 @@
 	 $(document).ready(function(){
 			// 돌아가기 눌렀을 때
 			$("#cancle").on("click", function(){
-				location.href = "${path}/home";
+				location.href = "${path}/";
 			});
 			
 			$("#submit").on("click", function(){
@@ -59,10 +59,22 @@
 					$("#memberPw").focus();
 					return false;
 				}
-				if(vo == null || !BCrypt.checkpw(loginDTO.getMemberPw(), vo.getMemberPw())){
-					alert("아이디와 비밀번호를 확인해주세요.");
-					return false;
-				}
+				$.ajax({
+					url : "/member/passChk",
+					type : "POST",
+					dataType : "json",
+					data : $("#delForm").serializeArray(),
+					success: function(data){
+						if(data==0){
+							alert("패스워드가 틀렸습니다.");
+							return;
+						}else{
+							if(confirm("회원탈퇴하시겠습니까?")){
+								$("#delForm").submit();
+							}
+						}
+					}
+				})
 			});
 		});
 	</script>
@@ -71,7 +83,7 @@
 		<c:if test="${not empty login}">
 			<div class="container">
 				<form class="hjForm row g-3 mx-auto" action="${path}/member/delete_member"
-					method="post">
+					method="post" id="delForm">
 					<h3>당근책 회원 탈퇴</h3>
 		
 					<div class="col-md-6">

@@ -60,7 +60,7 @@
     <body>
 		<c:if test="${not empty login}">   
 		    <section id="container">
-				<form class="hjForm row g-3 mx-auto" action="${path}/member/delete_member" method="post">
+				<form class="hjForm row g-3 mx-auto" action="${path}/member/update_member" method="post">
 					<h3>회원정보 수정</h3>
 					<div class="col-md-12">
 						<label for="memberId" class="form-label">아이디</label>
