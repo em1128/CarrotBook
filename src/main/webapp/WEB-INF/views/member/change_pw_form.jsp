@@ -42,11 +42,6 @@
 				location.href = "${path}/";
 			});
 			$("#submit").on("click", function(){
-				if($("#memberId").val()==""){
-					alert("아이디를 입력해주세요.");
-					$("#memberId").focus();
-					return false;
-				}
 				if($("#memberPw").val()==""){
 					alert("비밀번호를 입력해주세요.");
 					$("#memberPw").focus();
@@ -66,35 +61,53 @@
 	</script>
 
     <body>
-    	 <div class="container">
-			<form class="hjForm row g-1 mx-auto" action="${path}/member/change_pw" method="post">
-				<h3>비밀번호 변경</h3>
-				<div class="col-md-12">
-					<label for="memberId" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="memberId" name="memberId">
-				</div>					
-				<div class="col-md-12">
-					<label for="memberPw" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" id="memberPw" name="memberPw">
-				</div>
-				<div class="col-md-12">
-					<label for="memberPw2" class="form-label">비밀번호 확인</label>
-					<input type="password" class="form-control" id="memberPw2" name="memberPw2">
-				</div>
-				<div class="col-12">
-					<button type="submit" class="btn btn-secondary" id="submit">비밀번호 변경</button>
-					<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
-				</div>
-			</form>
-		</div>
-		<script>
-			var msg_pw="${msg_pw}";
-			if(msg_pw =="0"){
-				alert("아이디를 확인해주세요");
-			}else if(msg_pw =="1"){
-				alert("비밀번호가 변경되었습니다");
-			}
-		</script>
+    	<c:if test="${not empty login}"> 
+	    	<div class="container">
+				<form class="hjForm row g-1 mx-auto" action="${path}/member/change_pw" method="post">
+					<h3>비밀번호 변경</h3>
+					<div class="col-md-12">
+						<label for="memberId" class="form-label">아이디</label>
+						<input type="text" class="form-control" id="memberId" name="memberId" value="${login.memberId}" readonly="readonly">
+					</div>
+					<div class="col-md-12">
+						<label for="memberPw" class="form-label">비밀번호</label>
+						<input type="password" class="form-control" id="memberPw" name="memberPw">
+					</div>
+					<div class="col-md-12">
+						<label for="memberPw2" class="form-label">비밀번호 확인</label>
+						<input type="password" class="form-control" id="memberPw2" name="memberPw2">
+					</div>
+					<div class="col-12">
+						<button type="submit" class="btn btn-secondary" id="submit">비밀번호 변경</button>
+						<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
+					</div>
+				</form>
+			</div>
+		</c:if>
+		<c:if test="${not empty member}"> 
+	    	<div class="container">
+				<form class="hjForm row g-1 mx-auto" action="${path}/member/change_pw" method="post">
+					<h3>비밀번호 변경</h3>
+					<div class="col-md-12">
+						<label for="memberId" class="form-label">아이디</label>
+						<input type="text" class="form-control" id="memberId" name="memberId" value="${member.memberId}" readonly="readonly">
+					</div>
+					<div class="col-md-12">
+						<label for="memberPw" class="form-label">비밀번호</label>
+						<input type="password" class="form-control" id="memberPw" name="memberPw">
+					</div>
+					<div class="col-md-12">
+						<label for="memberPw2" class="form-label">비밀번호 확인</label>
+						<input type="password" class="form-control" id="memberPw2" name="memberPw2">
+					</div>
+					<div class="col-12">
+						<button type="submit" class="btn btn-secondary" id="submit">비밀번호 변경</button>
+						<button type="button" class="btn btn-secondary" id="cancle">돌아가기</button>
+					</div>
+				</form>
+			</div>
+		</c:if>
+
     </body>
     <jsp:include page="${path}/static/include/footer.jsp"/>
 </html>

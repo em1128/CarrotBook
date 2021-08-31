@@ -67,7 +67,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "/";
+		return "/member/logout";
 	}
 	
 	// 아이디 찾기 get
@@ -115,6 +115,10 @@ public class MemberController {
 		HttpSession session = req.getSession();
 		MemberVO find_pw = service.find_pw(vo);
 		
+		System.out.println("==================");
+		System.out.println(vo.getMemberId());
+		System.out.println("==================");
+		
 		if(find_pw == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", "fail");
@@ -134,20 +138,26 @@ public class MemberController {
 	//비밀번호 변경 post
 	@RequestMapping(value="/change_pw", method = RequestMethod.POST)
 	public String post_change_pw(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+		
+		System.out.println("==================");
+		System.out.println(vo.getMemberId());
+		System.out.println("==================");
+		
 		String inputPass = vo.getMemberPw();
 		String pwd = pwdEncoder.encode(inputPass);
 		vo.setMemberPw(pwd);
-		int msg_pw = service.change_pw(vo);		
-		session.invalidate();
+		int msg_pw = service.change_pw(vo);	
 		
 		if(msg_pw!=1) {	//안될때
 			rttr.addFlashAttribute("msg_pw","0");
 			return "redirect:/member/change_pw_form";
 		}else { //될때
 			rttr.addFlashAttribute("msg_pw","1");
-			return "redirect:/member/change_pw_form";
+			session.invalidate();
+			return "redirect:/member/login";
 		}
 	}
+	
 	//회원정보 수정 get
 	@RequestMapping(value = "/update_member_form", method = RequestMethod.GET)
 	public String get_update_member() throws Exception {
