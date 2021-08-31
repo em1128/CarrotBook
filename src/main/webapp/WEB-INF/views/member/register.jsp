@@ -31,7 +31,7 @@
 
 		<jsp:include page="${path}/static/include/header.jsp"/>
 		
-		<link rel="stylesheet" href="${path}/css/style.css">
+		<link rel="stylesheet" href="${path}/css/myCss.css">
 		
     </head>
     
@@ -39,7 +39,7 @@
 		$(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "${path}/home";
+				location.href = "${path}/";
 			});
 		
 			$("#submit").on("click", function(){
@@ -138,9 +138,6 @@
 							<button type="submit" class="btn btn-secondary" id="submit">회원 가입</button>
 							<button class="btn btn-secondary" type="button" id="cancle">돌아가기</button>
 						</div>
-					</c:if>
-					<c:if test="${member != null}">
-						${member.memberId}님 반갑습니다
 					</c:if>
 				</form>
 			</div>

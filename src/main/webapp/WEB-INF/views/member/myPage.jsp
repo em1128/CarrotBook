@@ -29,7 +29,7 @@
         <title>당근책 로그인</title>
 
 		<jsp:include page="${path}/static/include/header.jsp"/>
-		<link rel="stylesheet" href="${path}/css/style.css">
+		<link rel="stylesheet" href="${path}/css/myCss.css">
 			
     </head>
     
@@ -70,19 +70,6 @@
 				</div>
 			</div>
 		</c:if>
-		
-		<c:if test="${empty login}">
-			<div class="container hjForm row g-3 mx-auto">
-				<div class="col-12">
-					<h3>로그인 후 이용해주세요</h3>
-					<br>
-					<button type="button" class="btn btn-secondary" id="register">회원 가입</button>
-					<button type="button" class="btn btn-secondary" id="login">로그인</button>
-				</div>
-			</div>
-		</c:if>
-    
-    	
     </body>
     <jsp:include page="${path}/static/include/footer.jsp"/>
 </html>

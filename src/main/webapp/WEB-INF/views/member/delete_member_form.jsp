@@ -36,7 +36,7 @@
 <title>당근책 회원 탈퇴</title>
 
 <jsp:include page="${path}/static/include/header.jsp" />
-<link rel="stylesheet" href="${path}/css/style.css">
+<link rel="stylesheet" href="${path}/css/myCss.css">
 
 </head>
 

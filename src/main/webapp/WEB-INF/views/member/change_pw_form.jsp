@@ -31,7 +31,7 @@
 			
 		<jsp:include page="${path}/static/include/header.jsp"/>
 		
-		<link rel="stylesheet" href="${path}/css/style.css">
+		<link rel="stylesheet" href="${path}/css/myCss.css">
 		
     </head>
     
@@ -39,7 +39,7 @@
 	 $(document).ready(function(){
 			// 취소
 			$("#cancle").on("click", function(){
-				location.href = "${path}/home";
+				location.href = "${path}/";
 			});
 			$("#submit").on("click", function(){
 				if($("#memberId").val()==""){

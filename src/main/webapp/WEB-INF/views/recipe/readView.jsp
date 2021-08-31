@@ -52,6 +52,7 @@
 							<tr><td>${read.ingredients}</td></tr>
 							<tr class="title2"><td>만드는 방법</td></tr>
 							<tr><td>${read.directions}</tr>
+							<tr><td><button type="submit" class="btn btn-secondary" id="submit">장바구니에 담기</button></td></tr>
 						</tbody>			
 					</table>
 				</form>

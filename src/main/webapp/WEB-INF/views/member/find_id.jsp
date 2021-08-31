@@ -37,7 +37,7 @@
 
 <jsp:include page="${path}/static/include/header.jsp" />
 
-<link rel="stylesheet" href="${path}/css/style.css">
+<link rel="stylesheet" href="${path}/css/myCss.css">
 
 </head>
 
