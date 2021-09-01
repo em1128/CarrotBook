@@ -16,30 +16,8 @@
 	 		margin-top: 20px;
 	 	}
 	 </style>	
-	 
 	</head>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var formObj = $("form[name='writeForm']");
-			$(".write_btn").on("click", function(){
-				if(fn_valiChk()){
-					return false;
-				}
-				formObj.attr("action", "/board/write");
-				formObj.attr("method", "post");
-				formObj.submit();
-			});
-		})
-		function fn_valiChk(){
-			var regForm = $("form[name='writeForm'] .chk").length;
-			for(var i = 0; i<regForm; i++){
-				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-					alert($(".chk").eq(i).attr("title"));
-					return true;
-				}
-			}
-		}
-	</script>
+
 	<body>
 			<%@include file="/static/include/header.jsp" %>
 
@@ -63,7 +41,7 @@
 									<input type="file" name="file" class="form-control" />
 							</div>
 							<div>					
-									<button type="submit" onclick="registcheck()" style="margin-top:20px;">작성</button>
+									<button type="button" onclick="registcheck()" style="margin-top:20px;">작성</button>
 							</div>				
 				</form>
 			</section>
@@ -72,17 +50,17 @@
 		<script>
          function registcheck() {
             //작성자, 글제목, 내용에 공백을 확인하고 공백이 아니면 submit() 실행
-            if(document.writeform.title.value == ""){
+            if(document.writeform.title.value == "") {
                alert("제목을 입력하세요.");
                return;
-            }else if(document.writeform.content.value==""){
+            }else if(document.writeform.content.value=="") {
                alert("내용을 입력하세요.");
                return;
-            }else if(document.writeform.writer.value==""){
+            }else if(document.writeform.writer.value=="") {
                 alert("작성자를 입력하세요.");
                 return;
-            }else if(confirm("게시글을 등록하시겠습니까?")){
-               document.writeform.submit();
+            }else if(confirm("게시글을 등록하시겠습니까?")) {
+                document.writeform.submit();
             }
          }
       </script>
