@@ -36,7 +36,7 @@ String youtube = "https://www.youtube.com/results?search_query=";
 				usemap="#bodymap" />
 				<map id="bodymap" name="bodymap">
 	
-				<!-- HomeController에서 ${youtube}받아옴 -->
+				
 				<area shape="circle" title="어깨(숄더)" alt="삼각근" coords="267,108,17" href="<%=youtube%>삼각근 운동" target="_blank" />
 				<area shape="circle" title="어깨(숄더)" alt="삼각근" coords="402,111,19" href="<%=youtube%>삼각근 운동" target="_blank" />
 				<area shape="circle" title="어깨(숄더)" alt="삼각근" coords="516,117,20" href="<%=youtube%>삼각근 운동" target="_blank" />
