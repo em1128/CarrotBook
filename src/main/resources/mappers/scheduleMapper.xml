@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="scheduleMapper">
+	<!-- 스케줄러 작성 -->
+	<insert id="create" parameterType="com.team.carrot.vo.ScheduleVO" useGeneratedKeys="true" keyProperty="bno">
+	    <selectKey keyProperty="bno" resultType="int" order="BEFORE"> <!-- BEFORE =>insert를 실행하기 전에 먼저 실행 -->
+	    	SELECT SCHEDULE_SEQ.NEXTVAL FROM DUAL
+	    </selectKey>
+	    INSERT INTO SCHEDULE(    BNO 
+	   					       , MEMBER
+	   					       , ROUTINE
+	   					       , SCHDATE
+	   					       , START_TIME
+	   					       , END_TIME
+	   					       , ALLDAY
+	   					       , NORPT
+	   					       , DAYRPT
+	   					       , WEEKRPT
+	   					       , MONTHRPT
+	   					       , YEARRPT
+	   					       , MEMO  )
+	                  VALUES(    #{bno}
+	                 		   , #{member}
+	                 		   , #{routine}
+	                 		   , #{schdate}
+	                 		   , #{start_time}
+	                 		   , #{end_time}
+	                 		   , #{allday}
+	                 		   , #{norpt}
+	                 		   , #{dayrpt}
+	                 		   , #{weekrpt}
+	                 		   , #{monthrpt}
+	                 		   , #{yearrpt}
+	                 		   , #{memo}
+	                 		     )
+   
+    </insert>
+	
+	<select id="read" parameterType="int" resultType="com.team.carrot.vo.ScheduleVO">
+	SELECT  BNO 
+	   	   , MEMBER      <!-- 회원 로그인과 연결시 where절에 조건으로 추가해줄 것 -->
+	   	   , ROUTINE
+	   	   , SCHDATE
+	   	   , START_TIME
+	   	   , END_TIME
+	   	   , ALLDAY
+	   	   , NORPT
+	   	   , DAYRPT
+	   	   , WEEKRPT
+	   	   , MONTHRPT
+	   	   , YEARRPT
+	   	   , MEMO  
+	 FROM SCHEDULE
+	 WHERE BNO=#{bno}
+	</select>
+
+	<select id="readAll" resultType="com.team.carrot.vo.ScheduleVO">
+	SELECT  BNO 
+	   	   , MEMBER 
+	   	   , ROUTINE
+	   	   , SCHDATE
+	   	   , START_TIME
+	   	   , END_TIME
+	   	   , ALLDAY
+	   	   , NORPT
+	   	   , DAYRPT
+	   	   , WEEKRPT
+	   	   , MONTHRPT
+	   	   , YEARRPT
+	   	   , MEMO  
+	 FROM SCHEDULE
+	</select>
+	
+ 	
+    <update id="update" parameterType="com.team.carrot.vo.ScheduleVO">
+		UPDATE SCHEDULE
+		   SET ROUTINE=#{routine},
+		   	   SCHDATE=#{schdate}
+		   	   START_TIME=#{start_time},
+		   	   END_TIME=#{end_time},
+		   	   ALLDAY=#{allday},
+		   	   NORPT=#{norpt},
+		   	   DAYRPT=#{dayrpt},
+		   	   WEEKRPT=#{weekrpt},
+		   	   MONTHRPT=#{monthrpt},
+		   	   YEARRPT=#{yearrpt},
+		   	   MEMO=#{memo},
+		 WHERE BNO=#{bno} 
+	</update>
+	
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM SCHEDULE
+		 WHERE BNO=#{bno}
+	</delete>
+
+
+</mapper>
