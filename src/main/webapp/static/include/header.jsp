@@ -32,7 +32,7 @@
 					href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 			</c:if>
 		<li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/scheduler/">스케줄러</a>
+          <a class="nav-link" href="${pageContext.request.contextPath}/scheduler/calendar">스케줄러</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="${pageContext.request.contextPath}/board/list">게시판</a>

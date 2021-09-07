@@ -16,10 +16,6 @@
 <title>input schedule</title>
 </head>
 	<body>
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputschedule">
-  Input Schedule
-</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="inputschedule" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -30,7 +26,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       	<form action="/c/scheduler/modalInsert" method="post">
+       	<form action="${pageContext.request.contextPath}/scheduler/modalInsert" method="post">
 		<table>
 			<tr>
 			<td><label for ="routine">일정</label></td>

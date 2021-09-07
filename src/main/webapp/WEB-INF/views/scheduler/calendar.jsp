@@ -15,11 +15,7 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<!-- 	
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 
- -->
  	<script type='text/javascript'>
 
  	function addMyEvent(default_event){
@@ -32,10 +28,13 @@
  		      }); 			
  		</c:forEach>
  	}
+ 	// CalendarController의 schedule에 있는 일정을 list로 가져와서 달력에 추가하는 함수
  	
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {	
   var calendarEl = document.getElementById('calendar');
+  // calendar를 calendarEl이라는 이름으로 정의 */
   
+  // 기본 설정 일정 (웹페이지에서 지워도 DB에 반영되지 않음, 새로고침시 다시 나타남)
   var default_event = [
 
       {
@@ -47,29 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
           title: '전완근',
           start: '2021-09-03T13:00:00',
           constraint: 'businessHours'
-        },
-      {
-          title: '광배근',
-          start: '2021-09-03T13:00:00',
-          constraint: 'businessHours'
-        },
-      {
-          title: '대퇴근',
-          start: '2021-09-03T13:00:00',
-          constraint: 'businessHours'
-        },
-        {
-            start: '2021-09-24',
-            end: '2021-09-26',
-            overlap: false,
-            display: 'background',
-            color: '#ff9f89'
-        },
-        {
-            title: '하체',
-            start: '2021-09-20',
-            end: '2021-09-22'
-          }
+        }
   ];
   
   addMyEvent(default_event);
@@ -84,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dayMaxEventRows: true, // for all non-TimeGrid views
     views: {
     timeGrid: {
-    dayMaxEventRows: 3 // adjust to 3 only for timeGridWeek/timeGridDay
+    dayMaxEventRows: 3   // 하루 일정이 3개 이상이면 +more로 표시됨
     }
     },
     headerToolbar: {
@@ -94,27 +71,21 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
-      selectable: true,
+      selectable: true,   // 일정 드래그로 옮기기 | 적용할지 말지 생각해보기
       selectMirror: true,
       select: function(arg) {
-        /* var title = prompt('Event Title:'); */        
-			myModal.toggle();
-        if (title) {
-          	calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
+    	  
+		myModal.toggle();
         calendar.unselect()
+     	// 캘린더 클릭시 일정 입력 모달창 열림
       },
       eventClick: function(arg) {
-        if (confirm('Are you sure you want to delete this event?')) {
+        if (confirm('일정을 삭제하시겠습니까?')) {
           location.href="${pageContext.request.contextPath}/scheduler/delete?bno=" + arg.event.groupId;
           arg.event.remove()
         }
       },
+      // 선택한 groupId에 있는 일정(bno: 일정고유번호) 삭제
       editable: true,
       
     events : default_event
@@ -122,29 +93,33 @@ document.addEventListener('DOMContentLoaded', function() {
   calendar.render();
 });
 </script>
-<style>
-.fc-daygrid-more-link, .fc-daygrid-day-number, .fc-col-header-cell-cushion {
+<style> /* 이미 한 번 덮어씌운 css이기 때문에 외부로 빼서 적용하면 순서가 뒤로 밀려남 */
+.fc-daygrid-more-link, .fc-daygrid-day-number, .fc-col-header-cell-cushion, .fc-daygrid-event {
 	text-decoration: none;
 	color : black;
 }
-
-.fc-daygrid-event {
-	color : black;
+.fc-daygrid-more-link:hover, .fc-daygrid-day-number:hover, .fc-col-header-cell-cushion:hover, .fc-daygrid-event:hover{
+	color: black; 
 }
+/* 글씨 파란색, 링크 밑줄 없애줌(날짜에 hover시 밑줄 생기는 건 남아있음) */
+
 
 #calendar{
    width:60%;
    margin:20px auto;
    padding: 0 20px;
-   background-color:white;
-   
+   background-color:white;   
 }
 </style>
   </head>
   <body>
+    <!-- 헤더 -->
 <%@ include file="/static/include/header.jsp"%>
+	<!-- 모달 -->
 <%@ include file="/static/include/modal.jsp"%>
+	<!-- 캘린더 -->
     <div id='calendar'></div>
+	<!-- 푸터 -->
 <%@ include file="/static/include/footer.jsp" %>
   </body>
 </html>
