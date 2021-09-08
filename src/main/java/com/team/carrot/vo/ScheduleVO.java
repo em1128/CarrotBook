@@ -5,7 +5,7 @@ import java.util.Date;
 public class ScheduleVO {
 
 	private int bno;
-	private String member;	// 로그인한 회원의 스케줄과 연동
+	private String memberId;	// 로그인한 회원의 스케줄과 연동
 	private String routine;
 	private String schdate;
 	private String start_time;
@@ -31,12 +31,12 @@ public class ScheduleVO {
 		this.bno = bno;
 	}
 
-	public String getMember() {
-		return member;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMember(String member) {
-		this.member = member;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getRoutine() {
@@ -129,17 +129,17 @@ public class ScheduleVO {
 
 	@Override
 	public String toString() {
-		return "ScheduleVO [bno=" + bno + ", member=" + member + ", routine=" + routine + ", schdate=" + schdate
+		return "ScheduleVO [bno=" + bno + ", memberId=" + memberId + ", routine=" + routine + ", schdate=" + schdate
 				+ ", start_time=" + start_time + ", end_time=" + end_time + ", allday=" + allday + ", norpt=" + norpt
 				+ ", dayrpt=" + dayrpt + ", weekrpt=" + weekrpt + ", monthrpt=" + monthrpt + ", yearrpt=" + yearrpt
 				+ ", memo=" + memo + "]";
 	}
 
-	public ScheduleVO(int bno, String member, String routine, String schdate, String start_time, String end_time,
+	public ScheduleVO(int bno, String memberId, String routine, String schdate, String start_time, String end_time,
 			String allday, String norpt, String dayrpt, String weekrpt, String monthrpt, String yearrpt, String memo) {
 		super();
 		this.bno = bno;
-		this.member = member;
+		this.memberId = memberId;
 		this.routine = routine;
 		this.schdate = schdate;
 		this.start_time = start_time;
@@ -152,7 +152,6 @@ public class ScheduleVO {
 		this.yearrpt = yearrpt;
 		this.memo = memo;
 	}
-	
 
 	
 }
