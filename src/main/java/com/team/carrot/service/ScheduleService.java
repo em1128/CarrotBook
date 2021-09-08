@@ -14,6 +14,6 @@ public interface ScheduleService {
 
 	void delete(int bno) throws Exception;
 
-	List<ScheduleVO> readAll() throws Exception;
+	List<ScheduleVO> readAll(String memberId) throws Exception;
 
 }

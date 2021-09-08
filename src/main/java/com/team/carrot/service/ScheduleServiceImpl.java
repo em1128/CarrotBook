@@ -29,8 +29,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	// 일정 전체 조회
 	@Override
-	public List<ScheduleVO> readAll() throws Exception{
-		return dao.readAll();
+	public List<ScheduleVO> readAll(String memberId) throws Exception{
+		return dao.readAll(memberId);
 	}
 	
 	// 일정 수정

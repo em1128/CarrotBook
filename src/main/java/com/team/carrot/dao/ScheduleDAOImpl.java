@@ -30,8 +30,8 @@ public class ScheduleDAOImpl implements ScheduleDAO {
 	
 	// 전체 일정 조회
 	@Override
-	public List<ScheduleVO> readAll() throws Exception {
-		return sqlSession.selectList("scheduleMapper.readAll");
+	public List<ScheduleVO> readAll(String memberId) throws Exception {
+		return sqlSession.selectList("scheduleMapper.readAll", memberId);
 	}	
 	
 	// 일정 수정

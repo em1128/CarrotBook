@@ -38,14 +38,24 @@ document.addEventListener('DOMContentLoaded', function() {
   var default_event = [
 
       {
-          title: '${vo.routine}',
-          start: '${vo.schdate}T${vo.start_time}', 
-          end: '${vo.schdate}T${vo.end_time}'
-      },
+          title: '하림 생일🎂',
+          start: '2021-01-14T00:00:00',
+          end: '2021-01-14T23:59:59'
+        },
       {
-          title: '전완근',
-          start: '2021-09-03T13:00:00',
-          constraint: 'businessHours'
+          title: '지연 생일🎂',
+          start: '2021-02-01T00:00:00',
+          end: '2021-02-01T23:59:59'
+        },
+      {
+          title: '효정 생일🎂',
+          start: '2021-03-15T00:00:00',
+          end: '2021-03-15T23:59:59'
+        },
+      {
+          title: '민규 생일🎂',
+          start: '2021-08-25T00:00:00',
+          end: '2021-08-25T23:59:59'
         }
   ];
   

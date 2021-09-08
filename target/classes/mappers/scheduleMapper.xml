@@ -8,21 +8,9 @@
 	    <selectKey keyProperty="bno" resultType="int" order="BEFORE"> <!-- BEFORE =>insert를 실행하기 전에 먼저 실행 -->
 	    	SELECT SCHEDULE_SEQ.NEXTVAL FROM DUAL
 	    </selectKey>
-	    INSERT INTO SCHEDULE(    BNO 
-	   					       , MEMBER
-	   					       , ROUTINE
-	   					       , SCHDATE
-	   					       , START_TIME
-	   					       , END_TIME
-	   					       , ALLDAY
-	   					       , NORPT
-	   					       , DAYRPT
-	   					       , WEEKRPT
-	   					       , MONTHRPT
-	   					       , YEARRPT
-	   					       , MEMO  )
+	    INSERT INTO SCHEDULE
 	                  VALUES(    #{bno}
-	                 		   , #{member}
+	                 		   , #{memberId}
 	                 		   , #{routine}
 	                 		   , #{schdate}
 	                 		   , #{start_time}
@@ -39,39 +27,17 @@
     </insert>
 	
 	<select id="read" parameterType="int" resultType="com.team.carrot.vo.ScheduleVO">
-	SELECT  BNO 
-	   	   , MEMBER      <!-- 회원 로그인과 연결시 where절에 조건으로 추가해줄 것 -->
-	   	   , ROUTINE
-	   	   , SCHDATE
-	   	   , START_TIME
-	   	   , END_TIME
-	   	   , ALLDAY
-	   	   , NORPT
-	   	   , DAYRPT
-	   	   , WEEKRPT
-	   	   , MONTHRPT
-	   	   , YEARRPT
-	   	   , MEMO  
+	SELECT * 
 	 FROM SCHEDULE
 	 WHERE BNO=#{bno}
 	</select>
 
-	<select id="readAll" resultType="com.team.carrot.vo.ScheduleVO">
-	SELECT  BNO 
-	   	   , MEMBER 
-	   	   , ROUTINE
-	   	   , SCHDATE
-	   	   , START_TIME
-	   	   , END_TIME
-	   	   , ALLDAY
-	   	   , NORPT
-	   	   , DAYRPT
-	   	   , WEEKRPT
-	   	   , MONTHRPT
-	   	   , YEARRPT
-	   	   , MEMO  
+	<select id="readAll" parameterType="String" resultType="com.team.carrot.vo.ScheduleVO">
+	SELECT  * 
 	 FROM SCHEDULE
+	 WHERE MEMBERID=#{memberId}
 	</select>
+	
 	
  	
     <update id="update" parameterType="com.team.carrot.vo.ScheduleVO">
@@ -87,7 +53,7 @@
 		   	   MONTHRPT=#{monthrpt},
 		   	   YEARRPT=#{yearrpt},
 		   	   MEMO=#{memo},
-		 WHERE BNO=#{bno} 
+		 WHERE BNO=#{bno}
 	</update>
 	
 	
